@@ -203,7 +203,7 @@
         status.classList.toggle('hidden');
     }
 
-    const outletDelete = async (id, member) => {
+    const memberDelete = async (id, member) => {
         let tanya = confirm(`Apakah anda yakin untuk menghapus Member ${member} ?`);
         if (tanya) {
             await axios.post(`/member/${id}`, {
