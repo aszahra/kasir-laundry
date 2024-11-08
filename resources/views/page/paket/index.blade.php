@@ -22,11 +22,11 @@
                             <div class="mb-5">
                                 <label for="id_outlet"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Outlet</label>
-                                <select class="js-example-placeholder-single js-states form-control w-full m-6"
+                                <select class="js-example-placeholder-single js-states form-control w-full"
                                     name="id_outlet" id="id_outlet" data-placeholder="Pilih Outlet">
-                                    <option value="">Pilih...</option>
+                                    <option value="" disabled selected>Pilih...</option>
                                     @foreach ($outlet as $k)
-                                        <option value="{{ $k->id }}">{{ $k->outlet }}</option>
+                                        <option value="{{ $k->id }}">{{ $k->nama }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -75,38 +75,33 @@
                                     @php
                                         $no = 1;
                                     @endphp
-                                    @foreach ($konsinyasiproduk as $key => $k)
+                                    @foreach ($paket as $key => $k)
                                         <tr
                                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                             <th scope="row"
                                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                {{ $konsinyasiproduk->perPage() * ($konsinyasiproduk->currentPage() - 1) + $key + 1 }}
+                                                {{ $paket->perPage() * ($paket->currentPage() - 1) + $key + 1 }}
                                             </th>
                                             <td class="px-6 py-4">
-                                                {{ $k->konsinyasi->konsinyasi }}
+                                                {{ $k->outlet->nama }}
                                             </td>
                                             <td class="px-6 py-4">
-                                                {{ $k->produk->produk }}
+                                                {{ $k->jenis }}
                                             </td>
                                             <td class="px-6 py-4">
-                                                {{ $k->stok }}
-                                            </td>
-                                            <td class="px-6 py-4">
-                                                {{ $k->tgl_konsinyasi }}
+                                                {{ $k->nama_paket }}
                                             </td>
                                             <td class="px-6 py-4">
                                                 <button type="button" data-id="{{ $k->id }}"
-                                                    data-modal-target="sourceModal"
-                                                    data-id_konsinyasi="{{ $k->id_konsinyasi }}"
-                                                    data-id_produk="{{ $k->id_produk }}"
-                                                    data-stok="{{ $k->stok }}"
-                                                    data-tgl_konsinyasi="{{ $k->tgl_konsinyasi }}"
+                                                    data-modal-target="sourceModal" data-id_outlet="{{ $k->id_outlet }}"
+                                                    data-jenis="{{ $k->jenis }}"
+                                                    data-nama_paket="{{ $k->nama_paket }}"
                                                     onclick="editSourceModal(this)"
                                                     class="bg-amber-500 hover:bg-amber-600 px-3 py-1 rounded-md text-xs text-white">
                                                     Edit
                                                 </button>
                                                 <button
-                                                    onclick="return konsinyasiDelete('{{ $k->id }}','{{ $k->konsinyasiproduk }}')"
+                                                    onclick="return paketDelete('{{ $k->id }}','{{ $k->jenis }}')"
                                                     class="bg-red-500 hover:bg-bg-red-300 px-3 py-1 rounded-md text-xs text-white">Delete</button>
                                             </td>
                                         </tr>
@@ -115,7 +110,7 @@
                             </table>
                         </div>
                         <div class="mt-4">
-                            {{ $konsinyasiproduk->links() }}
+                            {{ $paket->links() }}
                         </div>
                     </div>
                 </div>
@@ -157,7 +152,7 @@
                                 Kelamin</label>
                             <select class="js-example-placeholder-single js-states form-control w-full m-6"
                                 name="jenis_kelamin" id="jenis_kelamin" data-placeholder="Pilih Jenis Kelamin">
-                                <option value="">Pilih...</option>
+                                <option value="" disabled selected>Pilih...</option>
                                 <option value="Perempuan">P</option>
                                 <option value="Laki-Laki">L</option>
                             </select>

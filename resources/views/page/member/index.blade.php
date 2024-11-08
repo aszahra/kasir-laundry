@@ -34,9 +34,9 @@
                             <div class="mb-5">
                                 <label for="jenis_kelamin"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis Kelamin</label>
-                                <select class="js-example-placeholder-single js-states form-control w-full m-6"
+                                <select class="js-example-placeholder-single js-states form-control w-full"
                                     name="jenis_kelamin" data-placeholder="Pilih Jenis Kelamin">
-                                    <option value="">Pilih...</option>
+                                    <option value="" disabled selected>Pilih...</option>
                                     <option value="Perempuan">P</option>
                                     <option value="Laki-Laki">L</option>
                                 </select>
@@ -145,9 +145,9 @@
                         <div class="mb-5">
                             <label for="jenis_kelamin"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis Kelamin</label>
-                            <select class="js-example-placeholder-single js-states form-control w-full m-6"
+                            <select class="js-example-placeholder-single js-states form-control w-full"
                                 name="jenis_kelamin" id="jenis_kelamin" data-placeholder="Pilih Jenis Kelamin">
-                                <option value="">Pilih...</option>
+                                <option value="" disabled selected>Pilih...</option>
                                 <option value="Perempuan">P</option>
                                 <option value="Laki-Laki">L</option>
                             </select>
