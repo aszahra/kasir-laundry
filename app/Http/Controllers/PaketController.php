@@ -68,7 +68,18 @@ class PaketController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        
+        $data = [
+            'id_outlet' => $request->input('id_outlet'),
+            'jenis' => $request->input('jenis'),
+            'nama_paket' => $request->input('nama_paket'),
+        ];
+
+        $id_outlet = $request->input('id_outlet');        
+
+        Paket::create($data);
+
+        return back()->with('message_delete', 'Data Paket Sudah dihapus');
     }
 
     /**
