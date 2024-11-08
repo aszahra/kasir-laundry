@@ -137,8 +137,8 @@
                         <div class="mb-5">
                             <label for="id_outlet"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Outlet</label>
-                            <select class="js-example-placeholder-single js-states form-control w-full" name="id_outlet"
-                                id="id_outlet_edit" data-placeholder="Pilih Outlet">
+                            <select class="js-example-placeholder-single js-states form-control w-full" name="id_outlet_edit"
+                                id="id_outlet" data-placeholder="Pilih Outlet">
                                 <option value="" disabled selected>Pilih...</option>
                                 @foreach ($outlet as $k)
                                     <option value="{{ $k->id }}">{{ $k->nama }}</option>
@@ -188,8 +188,8 @@
 
         let event = new Event('change');
 
-        document.querySelector('[name="id_outlet"]').value = id_outlet;
-        document.querySelector('[name="id_outlet"]').dispatchEvent(event);
+        document.querySelector('[name="id_outlet_edit"]').value = id_outlet;
+        document.querySelector('[name="id_outlet_edit"]').dispatchEvent(event);
 
         document.getElementById('jenis').value = jenis;
         document.getElementById('nama_paket').value = nama_paket;

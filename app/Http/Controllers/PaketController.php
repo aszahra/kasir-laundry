@@ -40,7 +40,7 @@ class PaketController extends Controller
             'nama_paket' => $request->input('nama_paket'),
         ];
 
-        $id_outlet = $request->input('id_outlet');        
+        $id_outlet = $request->input('id_outlet');
 
         Paket::create($data);
 
@@ -68,16 +68,15 @@ class PaketController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        
+
         $data = [
-            'id_outlet' => $request->input('id_outlet'),
+            'id_outlet' => $request->input('id_outlet_edit'),
             'jenis' => $request->input('jenis'),
             'nama_paket' => $request->input('nama_paket'),
         ];
 
-        $id_outlet = $request->input('id_outlet');        
-
-        Paket::create($data);
+        $datas = Paket::findOrFail($id);
+        $datas->update($data);
 
         return back()->with('message_delete', 'Data Paket Sudah dihapus');
     }
@@ -89,6 +88,6 @@ class PaketController extends Controller
     {
         $data = Paket::findOrFail($id);
         $data->delete();
-        return back()->with('message_delete','Data Paket Sudah dihapus');
+        return back()->with('message_delete', 'Data Paket Sudah dihapus');
     }
 }
