@@ -175,39 +175,22 @@
         status.classList.toggle('hidden');
     }
 
-    const outletDelete = async (id, nama) => {
-        // console.log(`Attempting to delete outlet ${nama} with ID ${id}`);
-        let tanya = confirm(`Apakah anda yakin untuk menghapus Outlet ${nama} ?`);
+    const outletDelete = async (id, outlet) => {
+        let tanya = confirm(`Apakah anda yakin untuk menghapus Outlet ${outlet} ?`);
         if (tanya) {
-            try {
-                await axios.post(`/outlet/${id}`, {
-                    _method: 'DELETE',
-                    _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            await axios.post(`/outlet/${id}`, {
+                    '_method': 'DELETE',
+                    '_token': $('meta[name="csrf-token"]').attr('content')
+                })
+                .then(function(response) {
+                    // Handle success
+                    location.reload();
+                })
+                .catch(function(error) {
+                    // Handle error
+                    alert('Error deleting record');
+                    console.log(error);
                 });
-                location.reload();
-            } catch (error) {
-                alert('Error deleting record');
-                console.error(error);
-            }
         }
     }
-
-    // const outletDelete = async (id, nama) => {
-    //     let tanya = confirm(`Apakah anda yakin untuk menghapus Outlet ${nama} ?`);
-    //     if (tanya) {
-    //         await axios.post(`/outlet/${id}`, {
-    //                 '_method': 'DELETE',
-    //                 '_token': $('meta[name="csrf-token"]').attr('content')
-    //             })
-    //             .then(function(response) {
-    //                 // Handle success
-    //                 location.reload();
-    //             })
-    //             .catch(function(error) {
-    //                 // Handle error
-    //                 alert('Error deleting record');
-    //                 console.log(error);
-    //             });
-    //     }
-    // }
 </script>

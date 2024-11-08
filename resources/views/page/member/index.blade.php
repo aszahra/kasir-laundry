@@ -203,20 +203,22 @@
         status.classList.toggle('hidden');
     }
 
-    const memberDelete = async (id, nama) => {
-        // console.log(`Attempting to delete outlet ${nama} with ID ${id}`);
-        let tanya = confirm(`Apakah anda yakin untuk menghapus Member ${nama} ?`);
+    const outletDelete = async (id, member) => {
+        let tanya = confirm(`Apakah anda yakin untuk menghapus Member ${member} ?`);
         if (tanya) {
-            try {
-                await axios.post(`/member/${id}`, {
-                    _method: 'DELETE',
-                    _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            await axios.post(`/member/${id}`, {
+                    '_method': 'DELETE',
+                    '_token': $('meta[name="csrf-token"]').attr('content')
+                })
+                .then(function(response) {
+                    // Handle success
+                    location.reload();
+                })
+                .catch(function(error) {
+                    // Handle error
+                    alert('Error deleting record');
+                    console.log(error);
                 });
-                location.reload();
-            } catch (error) {
-                alert('Error deleting record');
-                console.error(error);
-            }
         }
     }
 </script>

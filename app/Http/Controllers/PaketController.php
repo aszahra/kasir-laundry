@@ -76,6 +76,8 @@ class PaketController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = Paket::findOrFail($id);
+        $data->delete();
+        return back()->with('message_delete','Data Paket Sudah dihapus');
     }
 }

@@ -78,7 +78,6 @@ class OutletController extends Controller
      */
     public function destroy(string $id)
     {
-        
         $data = Outlet::findOrFail($id);
         $data->delete();
         return back()->with('message_delete','Data Outlet Sudah dihapus');

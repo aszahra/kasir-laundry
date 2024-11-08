@@ -101,7 +101,7 @@
                                                     Edit
                                                 </button>
                                                 <button
-                                                    onclick="return paketDelete('{{ $k->id }}','{{ $k->jenis }}')"
+                                                    onclick="return paketDelete('{{ $k->id }}','{{ $k->paket }}')"
                                                     class="bg-red-500 hover:bg-bg-red-300 px-3 py-1 rounded-md text-xs text-white">Delete</button>
                                             </td>
                                         </tr>
@@ -134,28 +134,28 @@
                 <form method="POST" id="formSourceModal">
                     @csrf
                     <div class="flex flex-col  p-4 space-y-6">
-                        <div class="">
-                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Nama</label>
-                            <input type="text" id="nama" name="nama"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan nama disini...">
-                        </div>
-                        <div class="">
-                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Alamat</label>
-                            <input type="text" id="alamat" name="alamat"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan alamat disini...">
-                        </div>
                         <div class="mb-5">
-                            <label for="jenis_kelamin"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis
-                                Kelamin</label>
-                            <select class="js-example-placeholder-single js-states form-control w-full m-6"
-                                name="jenis_kelamin" id="jenis_kelamin" data-placeholder="Pilih Jenis Kelamin">
+                            <label for="id_outlet"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Outlet</label>
+                            <select class="js-example-placeholder-single js-states form-control w-full" name="id_outlet"
+                                id="id_outlet_edit" data-placeholder="Pilih Outlet">
                                 <option value="" disabled selected>Pilih...</option>
-                                <option value="Perempuan">P</option>
-                                <option value="Laki-Laki">L</option>
+                                @foreach ($outlet as $k)
+                                    <option value="{{ $k->id }}">{{ $k->nama }}</option>
+                                @endforeach
                             </select>
+                        </div>
+                        <div class="">
+                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Jenis</label>
+                            <input type="text" id="jenis" name="jenis"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Masukan jenis disini...">
+                        </div>
+                        <div class="">
+                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Nama Paket</label>
+                            <input type="text" id="nama_paket" name="nama_paket"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Masukan nama paket disini...">
                         </div>
                     </div>
                     <div class="flex items-center p-4 space-x-2 border-t border-gray-200 rounded-b">
@@ -170,34 +170,29 @@
     </div>
 
 </x-app-layout>
-{{-- <script>
+<script>
     const editSourceModal = (button) => {
         const formModal = document.getElementById('formSourceModal');
         const modalTarget = button.dataset.modalTarget;
         const id = button.dataset.id;
-        const id_konsinyasi = button.dataset.id_konsinyasi;
-        const id_produk = button.dataset.id_produk;
-        const stok = button.dataset.stok;
-        const tgl_konsinyasi = button.dataset.tgl_konsinyasi;
-        let url = "{{ route('konsinyasiproduk.update', ':id') }}".replace(':id', id);
+        const id_outlet = button.dataset.id_outlet;
+        const jenis = button.dataset.jenis;
+        const nama_paket = button.dataset.nama_paket;
+        let url = "{{ route('paket.update', ':id') }}".replace(':id', id);
 
         let status = document.getElementById(modalTarget);
-        document.getElementById('title_source').innerText = `UPDATE KONSINYASI PRODUK`;
+        document.getElementById('title_source').innerText = `UPDATE PAKET`;
 
 
-        document.getElementById('id_konsinyasi').value = id_konsinyasi;
-        document.getElementById('id_produk').value = id_produk;
+        document.getElementById('id_outlet').value = id_outlet;
 
         let event = new Event('change');
 
-        document.querySelector('[name="id_konsinyasi_edit"]').value = id_konsinyasi;
-        document.querySelector('[name="id_konsinyasi_edit"]').dispatchEvent(event);
+        document.querySelector('[name="id_outlet"]').value = id_outlet;
+        document.querySelector('[name="id_outlet"]').dispatchEvent(event);
 
-        document.querySelector('[name="id_produk_edit"]').value = id_produk;
-        document.querySelector('[name="id_produk_edit"]').dispatchEvent(event);
-
-        document.getElementById('stok').value = stok;
-        document.getElementById('tgl_konsinyasi').value = tgl_konsinyasi;
+        document.getElementById('jenis').value = jenis;
+        document.getElementById('nama_paket').value = nama_paket;
 
         document.getElementById('formSourceButton').innerText = 'Simpan';
         document.getElementById('formSourceModal').setAttribute('action', url);
@@ -221,10 +216,10 @@
         status.classList.toggle('hidden');
     }
 
-    const konsinyasiDelete = async (id, konsinyasiproduk) => {
-        let tanya = confirm(`Apakah anda yakin untuk menghapus Konsinyasi Produk ${konsinyasiproduk} ?`);
+    const paketDelete = async (id, paket) => {
+        let tanya = confirm(`Apakah anda yakin untuk menghapus Paket ${paket} ?`);
         if (tanya) {
-            await axios.post(`/konsinyasiproduk/${id}`, {
+            await axios.post(`/paket/${id}`, {
                     '_method': 'DELETE',
                     '_token': $('meta[name="csrf-token"]').attr('content')
                 })
@@ -239,4 +234,4 @@
                 });
         }
     }
-</script> --}}
+</script>
