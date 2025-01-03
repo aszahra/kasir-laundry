@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailTransaksi;
 use App\Models\Member;
 use App\Models\Outlet;
+use App\Models\Paket;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransaksiController extends Controller
 {
@@ -27,10 +30,12 @@ class TransaksiController extends Controller
     {
         $outlet = Outlet::all();
         $member = Member::all();
+        $paket = Paket::all();
         $kode_invoice = Transaksi::createCode();
         return view('page.transaksi.create', compact('kode_invoice'))->with([
             'outlet' => $outlet,
             'member' => $member,
+            'paket' => $paket,
         ]);
     }
 
@@ -39,7 +44,43 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $kode_invoice = $request->input('kode_invoice');
+
+        $dataDetail = [
+            'kode_invoice' => $kode_invoice,
+            'id_paket' => $k,
+            'qty' => $request->input('qty'),
+            'keterangan' => $request->input('keterangan'),
+        ];
+        DetailTransaksi::create($dataDetail);
+
+        // if($request->input('total_bayar') < $request->input('total_jual')){
+        //     $statusPembelian = 'PIUTANG';
+        // }else{
+        //     $statusPembelian = 'LUNAS';
+        // }
+
+        $data = [
+            'kode_invoice' => $kode_invoice,
+            'id_outlet' => $request->input('id_outlet'),
+            'id_member' => $request->input('id_member'),
+            'tanggal' => $request->input('tanggal'),
+            'batas_waktu' => $request->input('batas_waktu'),
+            'tgl_bayar' => $request->input('tgl_bayar'),
+            'biaya_tambahan' => $request->input('biaya_tambahan'),
+            'diskon' => $request->input('diskon'),
+            'pajak' => $request->input('pajak'),
+            'status' => $request->input('status'),
+            'dibayar' => $request->input('dibayar'),
+            'total' => $request->input('total'),
+            'id_user' => Auth::user()->id,
+        ];
+
+        Transaksi::create($data);
+
+        return redirect()
+            ->route('transaksi.index')
+            ->with('message', 'Data sudah ditambahkan');
     }
 
     /**

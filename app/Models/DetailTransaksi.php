@@ -10,11 +10,11 @@ class DetailTransaksi extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id_transaksi',
+        'kode_invoice',
         'id_paket',
         'qty',
         'keterangan',
     ];
     
-    protected $table = 'member';
+    protected $table = 'detail_transaksi';
 }

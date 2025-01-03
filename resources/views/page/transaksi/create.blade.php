@@ -160,25 +160,25 @@
             </div>
         </div>
     </div>
-    {{-- <script>
+    <script>
         $(document).ready(function() {
-            // Fungsi menghitung Piutang/Kembali
-            function calculatePiutangKembali() {
-                const totalJual = parseFloat($('#total_jual').val()) || 0;
-                const totalBayar = parseFloat($('#total_bayar').val()) || 0;
-                const piutangKembali = totalBayar - totalJual;
-                $('#piutangKembali').val(piutangKembali);
-            }
+            // // Fungsi menghitung Piutang/Kembali
+            // function calculatePiutangKembali() {
+            //     const totalJual = parseFloat($('#total_jual').val()) || 0;
+            //     const totalBayar = parseFloat($('#total_bayar').val()) || 0;
+            //     const piutangKembali = totalBayar - totalJual;
+            //     $('#piutangKembali').val(piutangKembali);
+            // }
 
-            // Event listener untuk total_bayar
-            $('#total_bayar').on('input', function() {
-                calculatePiutangKembali();
-            });
+            // // Event listener untuk total_bayar
+            // $('#total_bayar').on('input', function() {
+            //     calculatePiutangKembali();
+            // });
 
-            // Event listener untuk total_jual (hanya jika diubah secara manual atau oleh kode lain)
-            $('#total_jual').on('input', function() {
-                calculatePiutangKembali();
-            });
+            // // Event listener untuk total_jual (hanya jika diubah secara manual atau oleh kode lain)
+            // $('#total_jual').on('input', function() {
+            //     calculatePiutangKembali();
+            // });
 
             // MENAMBAH ROW DETAIL PRODUK PENJUALAN
             $('#addRowBtn').click(function(event) {
@@ -193,21 +193,15 @@
                 const newRow = `<div class="border border-2 rounded-xl mb-2 p-2" id="row${rowCount}">
                                 <div class="flex mb-2 gap-2">
                                     <div class="mb-5 w-full">
-                                        <label for="produk${rowCount}"
-                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Produk</label>
-                                        <select id="produk${rowCount}" name="produk[]" class="form-control w-full"
-                                            onchange="getProduk(${rowCount})">
+                                        <label for="paket${rowCount}"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Paket</label>
+                                        <select id="paket${rowCount}" name="paket[]" class="form-control w-full"
+                                            onchange="getPaket(${rowCount})">
                                             <option value="">Pilih...</option>
-                                            @foreach ($produk as $k)
-                                                <option value="{{ $k->kode_produk }}">{{ $k->produk }}</option>
+                                            @foreach ($paket as $k)
+                                                <option value="{{ $k->id_paket }}">{{ $k->nama_paket }}</option>
                                             @endforeach
                                         </select>
-                                    </div>
-
-                                    <div class="mb-5 w-full">
-                                        <label for="harga${rowCount}"
-                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Harga</label>
-                                        <input type="number" id="harga${rowCount}" name="harga[]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly />
                                     </div>
                                     <div class="mb-5 w-full">
                                         <label for="qty${rowCount}"
@@ -217,9 +211,9 @@
                                             required value="0"/>
                                     </div>
                                     <div class="mb-5 w-full">
-                                        <label for="total_harga${rowCount}"
-                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total Harga</label>
-                                        <input type="number" id="total_harga${rowCount}" name="total_harga[]"
+                                        <label for="keterangan${rowCount}"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keterangan</label>
+                                        <input type="text" id="keterangan${rowCount}" name="keterangan[]"
                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             required readonly/>
                                     </div>
@@ -272,7 +266,7 @@
         }
     </script>
 
-    <script>
+    {{-- <script>
         const getProduk = (rowCount) => {
             const produkId = document.getElementById(`produk${rowCount}`).value;
 
@@ -292,9 +286,9 @@
                     document.getElementById(`harga${rowCount}`).value = "";
                 });
         };
-    </script>
+    </script> --}}
 
-    <script>
+    {{-- <script>
         function updateStatusPembelian() {
             const konsumenSelect = document.getElementById('id_konsumen');
             const totalBayarInput = document.getElementById('total_bayar');
