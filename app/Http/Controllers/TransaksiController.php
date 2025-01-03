@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Member;
+use App\Models\Outlet;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
 
@@ -23,7 +25,13 @@ class TransaksiController extends Controller
      */
     public function create()
     {
-        //
+        $outlet = Outlet::all();
+        $member = Member::all();
+        $kode_invoice = Transaksi::createCode();
+        return view('page.transaksi.create', compact('kode_invoice'))->with([
+            'outlet' => $outlet,
+            'member' => $member,
+        ]);
     }
 
     /**

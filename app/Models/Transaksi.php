@@ -22,6 +22,7 @@ class Transaksi extends Model
         'status',
         'dibayar',
         'id_user',
+        'total'
     ];
     
     protected $table = 'transaksi';
