@@ -25,4 +25,23 @@ class Transaksi extends Model
     ];
     
     protected $table = 'transaksi';
+
+    public static function createCode()
+    {
+        $latestCode = self::orderBy('kode_invoice', 'desc')->value('kode_invoice');
+        $latestCodeNumber = intval(substr($latestCode, 3));
+        $nextCodeNumber = $latestCodeNumber ? $latestCodeNumber + 1 : 1;
+        $formattedCodeNumber = sprintf("%05d", $nextCodeNumber);
+        return 'INV' . $formattedCodeNumber;
+    }
+
+    public function outlet()
+    {
+        return $this->belongsTo(Outlet::class, 'id_outlet', 'id');
+    }
+
+    public function member()
+    {
+        return $this->belongsTo(Member::class, 'id_member', 'id');
+    }
 }

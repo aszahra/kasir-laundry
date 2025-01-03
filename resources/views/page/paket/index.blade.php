@@ -31,17 +31,29 @@
                                 </select>
                             </div>
                             <div class="mb-5">
-                                <label for="base-input"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis</label>
-                                <input name="jenis" type="text" id="base-input"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <label for="jenis"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis
+                                </label>
+                                <select class="js-example-placeholder-single js-states form-control w-full"
+                                    name="jenis" data-placeholder="Pilih Jenis">
+                                    <option value="" disabled selected>Pilih...</option>
+                                    <option value="BAJU">BAJU</option>
+                                    <option value="HOODIE">HOODIE</option>
+                                    <option value="SPREI">SPREI</option>
+                                    <option value="KARPET">KARPET</option>
+                                    <option value="SELIMUT">SELIMUT</option>
+                                </select>
                             </div>
                             <div class="mb-5">
-                                <label for="base-input"
+                                <label for="nama_paket"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
                                     Paket</label>
-                                <input name="nama_paket" type="text" id="base-input"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <select class="js-example-placeholder-single js-states form-control w-full"
+                                    name="nama_paket" data-placeholder="Pilih Paket">
+                                    <option value="" disabled selected>Pilih...</option>
+                                    <option value="ONEDAY">SATU HARI</option>
+                                    <option value="KILAT">KILAT</option>
+                                </select>
                             </div>
                             <button type="submit"
                                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">SIMPAN</button>
@@ -89,7 +101,18 @@
                                                 {{ $k->jenis }}
                                             </td>
                                             <td class="px-6 py-4">
-                                                {{ $k->nama_paket }}
+                                                @switch($k->nama_paket)
+                                                    @case('ONEDAY')
+                                                        SATU HARI
+                                                    @break
+
+                                                    @case('KILAT')
+                                                        KILAT
+                                                    @break
+
+                                                    @default
+                                                        {{ $k->nama_paket }}
+                                                @endswitch
                                             </td>
                                             <td class="px-6 py-4">
                                                 <button type="button" data-id="{{ $k->id }}"
@@ -135,10 +158,10 @@
                     @csrf
                     <div class="flex flex-col  p-4 space-y-6">
                         <div class="mb-5">
-                            <label for="id_outlet"
+                            <label for="id_outlet_edit"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Outlet</label>
-                            <select class="js-example-placeholder-single js-states form-control w-full" name="id_outlet_edit"
-                                id="id_outlet" data-placeholder="Pilih Outlet">
+                            <select class="js-example-placeholder-single js-states form-control w-full"
+                                name="id_outlet_edit" id="id_outlet_edit" data-placeholder="Pilih Outlet">
                                 <option value="" disabled selected>Pilih...</option>
                                 @foreach ($outlet as $k)
                                     <option value="{{ $k->id }}">{{ $k->nama }}</option>
@@ -146,16 +169,29 @@
                             </select>
                         </div>
                         <div class="">
-                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Jenis</label>
-                            <input type="text" id="jenis" name="jenis"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan jenis disini...">
+                            <label for="jenis"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis
+                            </label>
+                            <select class="js-example-placeholder-single js-states form-control w-full" name="jenis"
+                                id="jenis" data-placeholder="Pilih Jenis">
+                                <option value="" disabled selected>Pilih...</option>
+                                <option value="BAJU">BAJU</option>
+                                <option value="HOODIE">HOODIE</option>
+                                <option value="SPREI">SPREI</option>
+                                <option value="KARPET">KARPET</option>
+                                <option value="SELIMUT">SELIMUT</option>
+                            </select>
                         </div>
                         <div class="">
-                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Nama Paket</label>
-                            <input type="text" id="nama_paket" name="nama_paket"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan nama paket disini...">
+                            <label for="nama_paket"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
+                                Paket</label>
+                            <select class="js-example-placeholder-single js-states form-control w-full"
+                                name="nama_paket" id="nama_paket" data-placeholder="Pilih Paket">
+                                <option value="" disabled selected>Pilih...</option>
+                                <option value="ONEDAY">SATU HARI</option>
+                                <option value="KILAT">KILAT</option>
+                            </select>
                         </div>
                     </div>
                     <div class="flex items-center p-4 space-x-2 border-t border-gray-200 rounded-b">
@@ -184,7 +220,7 @@
         document.getElementById('title_source').innerText = `UPDATE PAKET`;
 
 
-        document.getElementById('id_outlet').value = id_outlet;
+        document.getElementById('id_outlet_edit').value = id_outlet_edit;
 
         let event = new Event('change');
 

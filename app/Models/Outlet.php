@@ -16,8 +16,13 @@ class Outlet extends Model
     
     protected $table = 'outlet';
 
-    public function outlet()
+    public function paket()
     {
         return $this->hasMany(Paket::class, 'id_outlet');
-    } 
+    }
+
+    public function transaksi()
+    {
+        return $this->hasMany(Transaksi::class, 'id_outlet');
+    }
 }
