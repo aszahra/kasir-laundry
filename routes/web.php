@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DetailTransaksiController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\PaketController;
@@ -17,6 +18,7 @@ Route::resource('member', MemberController::class)->middleware('auth');
 Route::resource('paket', PaketController::class)->middleware('auth');
 Route::resource('transaksi', TransaksiController::class)->middleware('auth');
 Route::resource('detailTransaksi', DetailTransaksiController::class)->middleware('auth');
+Route::resource('laporan', LaporanController::class)->middleware('auth');
 
 
 Route::get('/dashboard', function () {

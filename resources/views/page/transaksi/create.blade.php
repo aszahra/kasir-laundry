@@ -95,6 +95,17 @@
                                         <option value="B">BELUM DIBAYAR</option>
                                     </select>
                                 </div>
+                                <div class="mb-5 w-full">
+                                    <label for="dibayar"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dibayar
+                                    </label>
+                                    <select class="js-example-placeholder-single js-states form-control w-full"
+                                        name="dibayar" id="dibayar" data-placeholder="Pilih Status">
+                                        <option value="" disabled selected>Pilih...</option>
+                                        <option value="D">DIBAYAR</option>
+                                        <option value="B">BELUM DIBAYAR</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="flex gap-5">
                                 
