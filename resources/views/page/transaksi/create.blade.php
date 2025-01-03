@@ -77,9 +77,10 @@
                             <div class="flex gap-5">
                                 <div class="mb-5 w-full">
                                     <label for="batas_waktu"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Batas Waktu
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal
+                                        Bayar
                                     </label>
-                                    <input type="text" id="batas_waktu" name="batas_waktu"
+                                    <input type="date" id="batas_waktu" name="batas_waktu" value="{{ date('Y-m-d') }}"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         required />
                                 </div>
@@ -193,9 +194,9 @@
                 const newRow = `<div class="border border-2 rounded-xl mb-2 p-2" id="row${rowCount}">
                                 <div class="flex mb-2 gap-2">
                                     <div class="mb-5 w-full">
-                                        <label for="paket${rowCount}"
+                                        <label for="id_paket${rowCount}"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Paket</label>
-                                        <select id="paket${rowCount}" name="paket[]" class="form-control w-full"
+                                        <select id="id_paket${rowCount}" name="id_paket[]" class="form-control w-full"
                                             onchange="getPaket(${rowCount})">
                                             <option value="">Pilih...</option>
                                             @foreach ($paket as $k)
@@ -215,7 +216,7 @@
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keterangan</label>
                                         <input type="text" id="keterangan${rowCount}" name="keterangan[]"
                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            required readonly/>
+                                            required/>
                                     </div>
                                     <button type="button" class="px-2 bg-red-100" onclick="removeRow(${rowCount})">
                                         Hapus

@@ -23,6 +23,6 @@ class Outlet extends Model
 
     public function transaksi()
     {
-        return $this->hasMany(Transaksi::class, 'id_outlet');
+        return $this->hasMany(Transaksi::class, 'id');
     }
 }
