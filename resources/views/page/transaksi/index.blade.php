@@ -136,27 +136,5 @@
             </div>
         </div>
     </div>
-    {{-- <script>
-        const dataDelete = async (id, nama_konsumen) => {
-            let tanya = confirm(`Apakah anda yakin untuk menghapus transaksi ${nama_konsumen}?`);
-            if (tanya) {
-                try {
-                    const response = await axios.post(`/penjualan/${id}`, {
-                        '_method': 'DELETE',
-                        '_token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                    });
 
-                    if (response.status === 200) {
-                        alert('Transaksi berhasil dihapus');
-                        location.reload();
-                    } else {
-                        alert('Gagal menghapus transaksi. Silakan coba lagi.');
-                    }
-                } catch (error) {
-                    console.error(error);
-                    alert('Terjadi kesalahan saat menghapus transaksi. Silakan cek konsol untuk detail.');
-                }
-            }
-        };
-    </script> --}}
 </x-app-layout>
