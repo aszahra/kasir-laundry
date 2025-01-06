@@ -43,49 +43,49 @@ class TransaksiController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    $request->validate([
-        'kode_invoice' => 'required|string',
-        'id_paket' => 'required|array',
-        'qty' => 'required|array',
-        'keterangan' => 'nullable|array',
-    ]);
+    {
+        $request->validate([
+            'kode_invoice' => 'required|string',
+            'id_paket' => 'required|array',
+            'qty' => 'required|array',
+            'keterangan' => 'nullable|array',
+        ]);
 
-    $kode_invoice = $request->input('kode_invoice');
-    $paket = $request->input('id_paket', []);
-    $qty = $request->input('qty', []);
-    $keterangan = $request->input('keterangan', []);
+        $kode_invoice = $request->input('kode_invoice');
+        $paket = $request->input('id_paket', []);
+        $qty = $request->input('qty', []);
+        $keterangan = $request->input('keterangan', []);
 
-    foreach ($paket as $index => $id_paket) {
-        $dataDetail = [
+        foreach ($paket as $index => $id_paket) {
+            $dataDetail = [
+                'kode_invoice' => $kode_invoice,
+                'id_paket' => $id_paket,
+                'qty' => $qty[$index] ?? 1,
+                'keterangan' => $keterangan[$index] ?? '',
+            ];
+            DetailTransaksi::create($dataDetail);
+        }
+
+        Transaksi::create([
             'kode_invoice' => $kode_invoice,
-            'id_paket' => $id_paket,
-            'qty' => $qty[$index] ?? 1,
-            'keterangan' => $keterangan[$index] ?? '',
-        ];
-        DetailTransaksi::create($dataDetail);
+            'id_outlet' => $request->input('id_outlet'),
+            'id_member' => $request->input('id_member'),
+            'tanggal' => $request->input('tanggal'),
+            'batas_waktu' => $request->input('batas_waktu'),
+            'tgl_bayar' => $request->input('tgl_bayar'),
+            'biaya_tambahan' => $request->input('biaya_tambahan'),
+            'diskon' => $request->input('diskon'),
+            'pajak' => $request->input('pajak'),
+            'status' => $request->input('status'),
+            'dibayar' => $request->input('dibayar'),
+            'total' => $request->input('total'),
+            'id_user' => Auth::user()->id,
+        ]);
+
+        return redirect()
+            ->route('transaksi.index')
+            ->with('message', 'Data sudah ditambahkan');
     }
-
-    Transaksi::create([
-        'kode_invoice' => $kode_invoice,
-        'id_outlet' => $request->input('id_outlet'),
-        'id_member' => $request->input('id_member'),
-        'tanggal' => $request->input('tanggal'),
-        'batas_waktu' => $request->input('batas_waktu'),
-        'tgl_bayar' => $request->input('tgl_bayar'),
-        'biaya_tambahan' => $request->input('biaya_tambahan'),
-        'diskon' => $request->input('diskon'),
-        'pajak' => $request->input('pajak'),
-        'status' => $request->input('status'),
-        'dibayar' => $request->input('dibayar'),
-        'total' => $request->input('total'),
-        'id_user' => Auth::user()->id,
-    ]);
-
-    return redirect()
-        ->route('transaksi.index')
-        ->with('message', 'Data sudah ditambahkan');
-}
 
     // public function store(Request $request)
     // {
