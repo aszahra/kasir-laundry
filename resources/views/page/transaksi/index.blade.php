@@ -136,7 +136,7 @@
             </div>
         </div>
     </div>
-    {{-- <script>
+    <script>
         const dataDelete = async (id, nama_konsumen) => {
             let tanya = confirm(`Apakah anda yakin untuk menghapus transaksi ${nama_konsumen}?`);
             if (tanya) {
@@ -158,5 +158,5 @@
                 }
             }
         };
-    </script> --}}
+    </script>
 </x-app-layout>
