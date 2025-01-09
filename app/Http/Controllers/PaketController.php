@@ -72,7 +72,7 @@ class PaketController extends Controller
         $data = [
             'id_outlet' => $request->input('id_outlet_edit'),
             'jenis' => $request->input('jenis'),
-            'nama_paket' => $request->input('nama_paket'),
+            'nama_paket_edit' => $request->input('nama_paket_edit'),
         ];
 
         $datas = Paket::findOrFail($id);
