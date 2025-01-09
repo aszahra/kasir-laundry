@@ -255,19 +255,22 @@
     const paketDelete = async (id, paket) => {
         let tanya = confirm(`Apakah anda yakin untuk menghapus Paket ${paket} ?`);
         if (tanya) {
-            await axios.post(`/paket/${id}`, {
+            try {
+                const response = await axios.post(`/paket/${id}`, {
                     '_method': 'DELETE',
-                    '_token': $('meta[name="csrf-token"]').attr('content')
-                })
-                .then(function(response) {
-                    // Handle success
-                    location.reload();
-                })
-                .catch(function(error) {
-                    // Handle error
-                    alert('Error deleting record');
-                    console.log(error);
+                    '_token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                 });
+
+                if (response.status === 200) {
+                    alert('Paket berhasil dihapus');
+                    location.reload();
+                } else {
+                    alert('Gagal menghapus paket. Silakan coba lagi.');
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Terjadi kesalahan saat menghapus paket. Silakan cek konsol untuk detail.');
+            }
         }
-    }
+    };
 </script>
