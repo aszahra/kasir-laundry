@@ -176,21 +176,24 @@
     }
 
     const outletDelete = async (id, outlet) => {
-        let tanya = confirm(`Apakah anda yakin untuk menghapus Outlet ${outlet} ?`);
+        let tanya = confirm(`Apakah anda yakin untuk menghapus Member ${outlet} ?`);
         if (tanya) {
-            await axios.post(`/outlet/${id}`, {
+            try {
+                const response = await axios.post(`/outlet/${id}`, {
                     '_method': 'DELETE',
-                    '_token': $('meta[name="csrf-token"]').attr('content')
-                })
-                .then(function(response) {
-                    // Handle success
-                    location.reload();
-                })
-                .catch(function(error) {
-                    // Handle error
-                    alert('Error deleting record');
-                    console.log(error);
+                    '_token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                 });
+
+                if (response.status === 200) {
+                    alert('Outlet berhasil dihapus');
+                    location.reload();
+                } else {
+                    alert('Gagal menghapus outlet. Silakan coba lagi.');
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Terjadi kesalahan saat menghapus outlet. Silakan cek konsol untuk detail.');
+            }
         }
     }
 </script>
