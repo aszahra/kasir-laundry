@@ -13,7 +13,7 @@ class PaketController extends Controller
      */
     public function index()
     {
-        $paket = Paket::paginate(5);
+        $paket = Paket::with('outlet')->paginate(5);
         $outlet = Outlet::all();
         return view('page.paket.index')->with([
             'paket' => $paket,
@@ -39,8 +39,6 @@ class PaketController extends Controller
             'jenis' => $request->input('jenis'),
             'nama_paket' => $request->input('nama_paket'),
         ];
-
-        $id_outlet = $request->input('id_outlet');
 
         Paket::create($data);
 
@@ -72,7 +70,7 @@ class PaketController extends Controller
         $data = [
             'id_outlet' => $request->input('id_outlet_edit'),
             'jenis' => $request->input('jenis'),
-            'nama_paket_edit' => $request->input('nama_paket_edit'),
+            'nama_paket' => $request->input('nama_paket'),
         ];
 
         $datas = Paket::findOrFail($id);
@@ -86,6 +84,8 @@ class PaketController extends Controller
      */
     public function destroy(string $id)
     {
-        // 
+        $data = Paket::findOrFail($id);
+        $data->delete();
+        return back()->with('message_delete', 'Data Paket Sudah dihapus');
     }
 }

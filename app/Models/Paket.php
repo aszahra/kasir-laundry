@@ -14,12 +14,12 @@ class Paket extends Model
         'jenis',
         'nama_paket'
     ];
-    
+
     protected $table = 'paket';
 
     public function outlet()
     {
         return $this->belongsTo(Outlet::class, 'id_outlet', 'id');
     }
-     
+    
 }

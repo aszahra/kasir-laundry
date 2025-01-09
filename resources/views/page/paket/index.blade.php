@@ -48,12 +48,8 @@
                                 <label for="nama_paket"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
                                     Paket</label>
-                                <select class="js-example-placeholder-single js-states form-control w-full"
-                                    name="nama_paket" data-placeholder="Pilih Paket">
-                                    <option value="" disabled selected>Pilih...</option>
-                                    <option value="ONEDAY">SATU HARI</option>
-                                    <option value="KILAT">KILAT</option>
-                                </select>
+                                    <input name="nama_paket" type="text" id="nama_paket"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             </div>
                             <button type="submit"
                                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">SIMPAN</button>
@@ -95,24 +91,13 @@
                                                 {{ $paket->perPage() * ($paket->currentPage() - 1) + $key + 1 }}
                                             </th>
                                             <td class="px-6 py-4">
-                                                {{ $k->outlet->nama }}
+                                                {{-- {{ $k->outlet->nama }} --}}
                                             </td>
                                             <td class="px-6 py-4">
                                                 {{ $k->jenis }}
                                             </td>
                                             <td class="px-6 py-4">
-                                                @switch($k->nama_paket)
-                                                    @case('ONEDAY')
-                                                        SATU HARI
-                                                    @break
-
-                                                    @case('KILAT')
-                                                        KILAT
-                                                    @break
-
-                                                    @default
-                                                        {{ $k->nama_paket }}
-                                                @endswitch
+                                                {{ $k->nama_paket }}
                                             </td>
                                             <td class="px-6 py-4">
                                                 <button type="button" data-id="{{ $k->id }}"
@@ -186,12 +171,8 @@
                             <label for="nama_paket"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
                                 Paket</label>
-                            <select class="js-example-placeholder-single js-states form-control w-full"
-                                name="nama_paket" id="nama_paket" data-placeholder="Pilih Paket">
-                                <option value="" disabled selected>Pilih...</option>
-                                <option value="ONEDAY">SATU HARI</option>
-                                <option value="KILAT">KILAT</option>
-                            </select>
+                                <input name="nama_paket" type="text" id="nama_paket"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
                     </div>
                     <div class="flex items-center p-4 space-x-2 border-t border-gray-200 rounded-b">
@@ -252,25 +233,22 @@
         status.classList.toggle('hidden');
     }
 
-    const paketDelete = async (id, nama_paket) => {
+    const paketDelete = async (id, paket) => {
         let tanya = confirm(`Apakah anda yakin untuk menghapus Paket ${paket} ?`);
         if (tanya) {
-            try {
-                const response = await axios.post(`/paket/${id}`, {
+            await axios.post(`/paket/${id}`, {
                     '_method': 'DELETE',
-                    '_token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                });
-
-                if (response.status === 200) {
-                    alert('Paket berhasil dihapus');
+                    '_token': $('meta[name="csrf-token"]').attr('content')
+                })
+                .then(function(response) {
+                    // Handle success
                     location.reload();
-                } else {
-                    alert('Gagal menghapus paket. Silakan coba lagi.');
-                }
-            } catch (error) {
-                console.error(error);
-                alert('Terjadi kesalahan saat menghapus paket. Silakan cek konsol untuk detail.');
-            }
+                })
+                .catch(function(error) {
+                    // Handle error
+                    alert('Error deleting record');
+                    console.log(error);
+                });
         }
     };
 </script>

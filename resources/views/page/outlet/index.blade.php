@@ -176,7 +176,7 @@
     }
 
     const outletDelete = async (id, outlet) => {
-        let tanya = confirm(`Apakah anda yakin untuk menghapus Member ${outlet} ?`);
+        let tanya = confirm(`Apakah anda yakin untuk menghapus Outlet ${outlet} ?`);
         if (tanya) {
             try {
                 const response = await axios.post(`/outlet/${id}`, {
@@ -185,7 +185,7 @@
                 });
 
                 if (response.status === 200) {
-                    alert('Outlet berhasil dihapus');
+                    alert('outlet berhasil dihapus');
                     location.reload();
                 } else {
                     alert('Gagal menghapus outlet. Silakan coba lagi.');
@@ -195,5 +195,5 @@
                 alert('Terjadi kesalahan saat menghapus outlet. Silakan cek konsol untuk detail.');
             }
         }
-    }
+    };
 </script>
