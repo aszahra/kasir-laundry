@@ -91,8 +91,8 @@
                                                 {{ $paket->perPage() * ($paket->currentPage() - 1) + $key + 1 }}
                                             </th>
                                             <td class="px-6 py-4">
-                                                {{-- {{ $k->outlet->nama }} --}}
-                                            </td>
+                                                {{ $k->outlet->nama}}
+                                            </td>                                            
                                             <td class="px-6 py-4">
                                                 {{ $k->jenis }}
                                             </td>
