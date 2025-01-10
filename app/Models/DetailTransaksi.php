@@ -12,8 +12,10 @@ class DetailTransaksi extends Model
     protected $fillable = [
         'kode_invoice',
         'id_paket',
+        'harga',
         'qty',
         'keterangan',
+        'jumlah',
     ];
     
     protected $table = 'detail_transaksi';

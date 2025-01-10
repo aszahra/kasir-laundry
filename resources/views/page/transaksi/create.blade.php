@@ -78,11 +78,29 @@
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal
                                         Bayar
                                     </label>
-                                    <input type="date" id="batas_waktu" name="batas_waktu" value="{{ date('Y-m-d') }}"
+                                    <input type="date" id="batas_waktu" name="batas_waktu"
+                                        value="{{ date('Y-m-d') }}"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         required />
                                 </div>
                             </div>
+
+                            {{-- DETAIL TRANSAKSI --}}
+                            <div class="p-4 bg-gray-100 mb-6 rounded-xl font-bold">
+                                <div class="flex items-center justify-between">
+                                    <div class="w-full">
+                                        DETAIL PRODUK PENJUALAN
+                                    </div>
+                                    <div><button id="addRowBtn"
+                                            class="bg-sky-400 hover:bg-sky-500 text-white px-2 rounded-xl">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="border border-2 rounded-xl p-2 mb-2" id="produkContainer">
+                                </div>
+                            </div>
+                            {{-- ======================= --}}
                             <div class="flex gap-5">
                                 <div class="mb-5 w-full">
                                     <label for="biaya_tambahan"
@@ -135,38 +153,15 @@
                                         <option value="B">BELUM DIBAYAR</option>
                                     </select>
                                 </div>
-                                div class="mb-5 w-full">
+                                <div class="mb-5 w-full">
                                     <label for="total_bayar"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total Bayar
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total
+                                        Bayar
                                     </label>
                                     <input type="number" id="total_bayar" name="total_bayar"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         required />
                                 </div>
-                            </div>
-                            {{-- DETAIL TRANSAKSI --}}
-                            <div class="p-4 bg-gray-100 mb-6 rounded-xl font-bold">
-                                <div class="flex items-center justify-between">
-                                    <div class="w-full">
-                                        DETAIL PRODUK PENJUALAN
-                                    </div>
-                                    <div><button id="addRowBtn"
-                                            class="bg-sky-400 hover:bg-sky-500 text-white px-2 rounded-xl">+</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-4">
-                                <div class="border border-2 rounded-xl p-2 mb-2" id="produkContainer">
-                                </div>
-                            </div>
-                            {{-- ======================= --}}
-                            <div class="flex gap-5">
-                                
-                                
-                            </div>
-                            <div class="flex gap-5">
-                                
-                                <
                             </div>
                             <button type="submit"
                                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
@@ -221,6 +216,13 @@
                                         </select>
                                     </div>
                                     <div class="mb-5 w-full">
+                                        <label for="harga${rowCount}"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Harga</label>
+                                        <input type="number" id="harga${rowCount}" name="harga[]"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            required value="0"/>
+                                    </div>
+                                    <div class="mb-5 w-full">
                                         <label for="qty${rowCount}"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Qty</label>
                                         <input type="number" id="qty${rowCount}" name="qty[]"
@@ -233,6 +235,13 @@
                                         <input type="text" id="keterangan${rowCount}" name="keterangan[]"
                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             required/>
+                                    </div>
+                                    <div class="mb-5 w-full">
+                                        <label for="jumlah${rowCount}"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jumlah</label>
+                                        <input type="number" id="jumlah${rowCount}" name="jumlah[]"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            required value="0" readonly/>
                                     </div>
                                     <button type="button" class="px-2 bg-red-100" onclick="removeRow(${rowCount})">
                                         Hapus
@@ -251,29 +260,61 @@
             function bindRowEvents(rowId) {
                 const hargaInput = document.getElementById(`harga${rowId}`);
                 const qtyInput = document.getElementById(`qty${rowId}`);
-                const totalHargaInput = document.getElementById(`total_harga${rowId}`);
+                const jumlahInput = document.getElementById(`jumlah${rowId}`);
 
                 // Perhitungan total harga
-                const calculateTotalHarga = () => {
+                const calculateJumlah = () => {
                     const harga = parseFloat(hargaInput.value) || 0;
                     const qty = parseInt(qtyInput.value) || 0;
-                    totalHargaInput.value = harga * qty;
-
-                    // MENGHITUNG TOTAL JUAL
-                    calculateTotalJual();
+                    jumlahInput.value = harga * qty;
                 };
-                qtyInput.addEventListener("input", calculateTotalHarga);
+
+                // Menambahkan event listener untuk menghitung jumlah saat input berubah
+                hargaInput.addEventListener('input', calculateJumlah);
+                qtyInput.addEventListener('input', calculateJumlah);
             }
 
-            // PERHITUNGAN TOTAL JUAL
-            function calculateTotalJual() {
-                let totalJual = 0;
-                $("[id^='total_harga']").each(function() {
-                    totalJual += parseFloat($(this).val()) || 0;
-                });
-                $('#total_jual').val(totalJual);
+            function calculatePajak(rowId) {
+                const jumlahInput = document.getElementById(`jumlah${rowId}`);
+                const pajakInput = document.getElementById('pajak');
+
+                const pajak = () => {
+                    const jumlah = parseFloat(jumlahInput.value) || 0;
+                    const pajak = jumlah * 0.12; // Menggunakan 0.12 untuk 12%
+                    pajakInput.value = pajak.toFixed(2); // Format ke 2 desimal
+                }
+
+                // Daftarkan event listener di sini
+                jumlahInput.addEventListener('input', pajak);
             }
 
+            // Pastikan untuk memanggil fungsi calculatePajak dengan rowId yang sesuai
+            // Misalnya, jika rowId adalah 1, Anda bisa memanggilnya seperti ini:
+            calculatePajak(1);
+
+            function calculateTotalBayar(rowId) {
+                const jumlahInput = document.getElementById(`jumlah${rowId}`);
+                const biayaTambahanInput = document.getElementById('biaya_tambahan');
+                const diskonInput = document.getElementById('diskon');
+                const pajakInput = document.getElementById('pajak');
+                const totalBayarInput = document.getElementById('total_bayar');
+
+                const calculateTotal = () => {
+                    const jumlah = parseFloat(jumlahInput.value) || 0;
+                    const biayaTambahan = parseFloat(biayaTambahanInput.value) || 0;
+                    const diskon = parseFloat(diskonInput.value) || 0;
+                    const pajak = parseFloat(pajakInput.value) || 0;
+
+                    const totalBayar = jumlah + biayaTambahan - (jumlah * diskon) + (jumlah * pajak);
+                    totalBayarInput.value = totalBayar.toFixed(2); // Format ke 2 desimal
+                };
+
+                // Menambahkan event listener untuk menghitung total bayar saat input berubah
+                jumlahInput.addEventListener('input', calculateTotal);
+                biayaTambahanInput.addEventListener('input', calculateTotal);
+                diskonInput.addEventListener('input', calculateTotal);
+                pajakInput.addEventListener('input', calculateTotal);
+            }
         });
 
         // MENGHAPUS ROW DETAIL PRODUK PENJUALAN
@@ -282,28 +323,6 @@
             updateRowNumbers();
         }
     </script>
-
-    {{-- <script>
-        const getProduk = (rowCount) => {
-            const produkId = document.getElementById(`produk${rowCount}`).value;
-
-            if (!produkId) {
-                document.getElementById(`harga${rowCount}`).value = "";
-                return;
-            }
-
-            axios.get(`/produk/produk_name/${produkId}`)
-                .then(response => {
-                    const produk = response.data.produk;
-
-                    document.getElementById(`harga${rowCount}`).value = produk ? produk.harga_jual : "";
-                })
-                .catch(error => {
-                    console.error("Gagal memuat data produk:", error);
-                    document.getElementById(`harga${rowCount}`).value = "";
-                });
-        };
-    </script> --}}
 
     {{-- <script>
         function updateStatusPembelian() {
