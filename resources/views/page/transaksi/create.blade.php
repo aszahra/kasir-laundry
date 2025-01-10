@@ -22,6 +22,19 @@
                             @csrf
                             <div class="flex gap-5">
                                 <div class="mb-5 w-full">
+                                    <label for="id_outlet"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Outlet</label>
+                                    <select class="js-example-placeholder-single js-states form-control w-full"
+                                        name="id_outlet" id="id_outlet" data-placeholder="Pilih Outlet">
+                                        <option value="" disabled selected>Pilih...</option>
+                                        @foreach ($outlet as $k)
+                                            <option value="{{ $k->id }}">{{ $k->nama }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="flex gap-5">
+                                <div class="mb-5 w-full">
                                     <label for="kode_invoice"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kode
                                         Invoice</label>
@@ -30,15 +43,13 @@
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="Kode Penjualan" readonly required />
                                 </div>
-                            </div>
-                            <div class="flex gap-5">
                                 <div class="mb-5 w-full">
-                                    <label for="id_outlet"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Outlet</label>
+                                    <label for="id_member"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Member</label>
                                     <select class="js-example-placeholder-single js-states form-control w-full"
-                                        name="id_outlet" id="id_outlet" data-placeholder="Pilih Outlet">
+                                        name="id_member" id="id_member" data-placeholder="Pilih Member">
                                         <option value="" disabled selected>Pilih...</option>
-                                        @foreach ($outlet as $k)
+                                        @foreach ($member as $k)
                                             <option value="{{ $k->id }}">{{ $k->nama }}</option>
                                         @endforeach
                                     </select>
@@ -54,17 +65,6 @@
                             </div>
                             <div class="flex gap-5">
                                 <div class="mb-5 w-full">
-                                    <label for="id_member"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Member</label>
-                                    <select class="js-example-placeholder-single js-states form-control w-full"
-                                        name="id_member" id="id_member" data-placeholder="Pilih Member">
-                                        <option value="" disabled selected>Pilih...</option>
-                                        @foreach ($member as $k)
-                                            <option value="{{ $k->id }}">{{ $k->nama }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="mb-5 w-full">
                                     <label for="tgl_bayar"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal
                                         Bayar
@@ -73,8 +73,6 @@
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         required />
                                 </div>
-                            </div>
-                            <div class="flex gap-5">
                                 <div class="mb-5 w-full">
                                     <label for="batas_waktu"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal
@@ -84,48 +82,7 @@
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         required />
                                 </div>
-                                <div class="mb-5 w-full">
-                                    <label for="status"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status
-                                    </label>
-                                    <select class="js-example-placeholder-single js-states form-control w-full"
-                                        name="status" id="status" data-placeholder="Pilih Status">
-                                        <option value="" disabled selected>Pilih...</option>
-                                        <option value="D">DIBAYAR</option>
-                                        <option value="B">BELUM DIBAYAR</option>
-                                    </select>
-                                </div>
-                                <div class="mb-5 w-full">
-                                    <label for="dibayar"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dibayar
-                                    </label>
-                                    <select class="js-example-placeholder-single js-states form-control w-full"
-                                        name="dibayar" id="dibayar" data-placeholder="Pilih Status">
-                                        <option value="" disabled selected>Pilih...</option>
-                                        <option value="D">DIBAYAR</option>
-                                        <option value="B">BELUM DIBAYAR</option>
-                                    </select>
-                                </div>
                             </div>
-                            <div class="flex gap-5">
-                                
-                            </div>
-                            {{-- DETAIL TRANSAKSI --}}
-                            <div class="p-4 bg-gray-100 mb-6 rounded-xl font-bold">
-                                <div class="flex items-center justify-between">
-                                    <div class="w-full">
-                                        DETAIL PRODUK PENJUALAN
-                                    </div>
-                                    <div><button id="addRowBtn"
-                                            class="bg-sky-400 hover:bg-sky-500 text-white px-2 rounded-xl">+</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-4">
-                                <div class="border border-2 rounded-xl p-2 mb-2" id="produkContainer">
-                                </div>
-                            </div>
-                            {{-- ======================= --}}
                             <div class="flex gap-5">
                                 <div class="mb-5 w-full">
                                     <label for="biaya_tambahan"
@@ -144,8 +101,6 @@
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         required />
                                 </div>
-                            </div>
-                            <div class="flex gap-5">
                                 <div class="mb-5 w-full">
                                     <label for="pajak"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pajak
@@ -154,14 +109,64 @@
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         required />
                                 </div>
+                            </div>
+                            <div class="flex gap-5">
                                 <div class="mb-5 w-full">
-                                    <label for="total"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total
+                                    <label for="status"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status
                                     </label>
-                                    <input type="number" id="total" name="total"
+                                    <select class="js-example-placeholder-single js-states form-control w-full"
+                                        name="status" id="status" data-placeholder="Pilih Status">
+                                        <option value="" disabled selected>Pilih...</option>
+                                        <option value="BARU">BARU</option>
+                                        <option value="PROSES">PROSES</option>
+                                        <option value="SELESAI">SELESAI</option>
+                                        <option value="DIAMBIL">DIAMBIL</option>
+                                    </select>
+                                </div>
+                                <div class="mb-5 w-full">
+                                    <label for="dibayar"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dibayar
+                                    </label>
+                                    <select class="js-example-placeholder-single js-states form-control w-full"
+                                        name="dibayar" id="dibayar" data-placeholder="Pilih Status">
+                                        <option value="" disabled selected>Pilih...</option>
+                                        <option value="D">DIBAYAR</option>
+                                        <option value="B">BELUM DIBAYAR</option>
+                                    </select>
+                                </div>
+                                div class="mb-5 w-full">
+                                    <label for="total_bayar"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total Bayar
+                                    </label>
+                                    <input type="number" id="total_bayar" name="total_bayar"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         required />
                                 </div>
+                            </div>
+                            {{-- DETAIL TRANSAKSI --}}
+                            <div class="p-4 bg-gray-100 mb-6 rounded-xl font-bold">
+                                <div class="flex items-center justify-between">
+                                    <div class="w-full">
+                                        DETAIL PRODUK PENJUALAN
+                                    </div>
+                                    <div><button id="addRowBtn"
+                                            class="bg-sky-400 hover:bg-sky-500 text-white px-2 rounded-xl">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="border border-2 rounded-xl p-2 mb-2" id="produkContainer">
+                                </div>
+                            </div>
+                            {{-- ======================= --}}
+                            <div class="flex gap-5">
+                                
+                                
+                            </div>
+                            <div class="flex gap-5">
+                                
+                                <
                             </div>
                             <button type="submit"
                                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>

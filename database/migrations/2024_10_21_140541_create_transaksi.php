@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('status');
             $table->string('dibayar');
             $table->integer('id_user');
+            $table->integer('total_bayar');
             $table->timestamps();
         });
     }
