@@ -132,10 +132,10 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
+    @can('role-A')
     <script>
         const dataDelete = async (id, nama_konsumen) => {
             let tanya = confirm(`Apakah anda yakin untuk menghapus transaksi ${nama_konsumen}?`);
@@ -159,4 +159,5 @@
             }
         };
     </script>
+    @endcan
 </x-app-layout>

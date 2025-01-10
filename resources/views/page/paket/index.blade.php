@@ -49,7 +49,7 @@
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
                                     Paket</label>
                                     <input name="nama_paket" type="text" id="nama_paket"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukan nama paket...">
                             </div>
                             <button type="submit"
                                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">SIMPAN</button>
@@ -172,7 +172,7 @@
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
                                 Paket</label>
                                 <input name="nama_paket" type="text" id="nama_paket"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukan nama paket...">
                         </div>
                     </div>
                     <div class="flex items-center p-4 space-x-2 border-t border-gray-200 rounded-b">
@@ -236,19 +236,22 @@
     const paketDelete = async (id, paket) => {
         let tanya = confirm(`Apakah anda yakin untuk menghapus Paket ${paket} ?`);
         if (tanya) {
-            await axios.post(`/paket/${id}`, {
+            try {
+                const response = await axios.post(`/paket/${id}`, {
                     '_method': 'DELETE',
-                    '_token': $('meta[name="csrf-token"]').attr('content')
-                })
-                .then(function(response) {
-                    // Handle success
-                    location.reload();
-                })
-                .catch(function(error) {
-                    // Handle error
-                    alert('Error deleting record');
-                    console.log(error);
+                    '_token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                 });
+
+                if (response.status === 200) {
+                    alert('paket berhasil dihapus');
+                    location.reload();
+                } else {
+                    alert('Gagal menghapus paket. Silakan coba lagi.');
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Terjadi kesalahan saat menghapus paket. Silakan cek konsol untuk detail.');
+            }
         }
     };
 </script>
