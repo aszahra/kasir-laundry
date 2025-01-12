@@ -65,21 +65,20 @@
                             </div>
                             <div class="flex gap-5">
                                 <div class="mb-5 w-full">
+                                    <label for="batas_waktu"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Batas Waktu
+                                    </label>
+                                    <input type="date" id="batas_waktu" name="batas_waktu"
+                                        value="{{ date('Y-m-d') }}"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        required />
+                                </div>
+                                <div class="mb-5 w-full">
                                     <label for="tgl_bayar"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal
                                         Bayar
                                     </label>
                                     <input type="date" id="tgl_bayar" name="tgl_bayar" value="{{ date('Y-m-d') }}"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        required />
-                                </div>
-                                <div class="mb-5 w-full">
-                                    <label for="batas_waktu"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal
-                                        Bayar
-                                    </label>
-                                    <input type="date" id="batas_waktu" name="batas_waktu"
-                                        value="{{ date('Y-m-d') }}"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         required />
                                 </div>
@@ -161,6 +160,17 @@
                                     <input type="number" id="total_bayar" name="total_bayar"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         required />
+                                </div>
+                            </div>
+                            <div class="flex gap-5">
+                                <div class="mb-5 w-full">
+                                    <label for="id_user"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                        User
+                                    </label>
+                                    @foreach ($user as $k)
+                                        <option value="{{ $k->id }}">{{ $k->name }}</option>
+                                    @endforeach
                                 </div>
                             </div>
                             <button type="submit"
@@ -274,23 +284,23 @@
                 qtyInput.addEventListener('input', calculateJumlah);
             }
 
-            function calculatePajak(rowId) {
-                const jumlahInput = document.getElementById(`jumlah${rowId}`);
-                const pajakInput = document.getElementById('pajak');
+            // function calculatePajak(rowCount) {
+            //     const jumlahInput = document.getElementById(`jumlah${rowId}`);
+            //     const pajakInput = document.getElementById('pajak');
 
-                const pajak = () => {
-                    const jumlah = parseFloat(jumlahInput.value) || 0;
-                    const pajak = jumlah * 0.12; // Menggunakan 0.12 untuk 12%
-                    pajakInput.value = pajak.toFixed(2); // Format ke 2 desimal
-                }
+            //     const pajak = () => {
+            //         const jumlah = parseInt(jumlahInput.value) || 0;
+            //         pajakInput.value = jumlah * 0.12;
 
-                // Daftarkan event listener di sini
-                jumlahInput.addEventListener('input', pajak);
-            }
+            //         const jumlah = parseFloat(jumlahInput.value) || 0;
+            //         pajakInput.value = jumlah * 0.12; // Menggunakan 0.12 untuk 12%
+            //         pajakInput.value = jumlah.toFixed(2); // Format ke 2 desimal
+            //     }
 
-            // Pastikan untuk memanggil fungsi calculatePajak dengan rowId yang sesuai
-            // Misalnya, jika rowId adalah 1, Anda bisa memanggilnya seperti ini:
-            calculatePajak(1);
+            //     // Daftarkan event listener di sini
+            //     jumlahInput.addEventListener('input', pajak);
+            // }
+
 
             function calculateTotalBayar(rowId) {
                 const jumlahInput = document.getElementById(`jumlah${rowId}`);

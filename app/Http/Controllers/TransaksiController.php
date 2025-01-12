@@ -7,6 +7,7 @@ use App\Models\Member;
 use App\Models\Outlet;
 use App\Models\Paket;
 use App\Models\Transaksi;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,6 +29,7 @@ class TransaksiController extends Controller
      */
     public function create()
     {
+        $user = User::all();
         $outlet = Outlet::all();
         $member = Member::all();
         $paket = Paket::all();
@@ -36,6 +38,7 @@ class TransaksiController extends Controller
             'outlet' => $outlet,
             'member' => $member,
             'paket' => $paket,
+            'user' => $user,
         ]);
     }
 
