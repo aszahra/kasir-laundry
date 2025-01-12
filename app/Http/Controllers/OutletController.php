@@ -12,12 +12,17 @@ class OutletController extends Controller
      */
     public function index()
     {
-        $outlet = Outlet::paginate(5);
-        return view('page.outlet.index')->with([
+        // $outlet = Outlet::paginate(5);
+        // return view('page.outlet.index')->with([
+        //     'outlet' => $outlet,
+        // ]);
+
+        //API//
+
+        $outlet = Outlet::all();
+        return response()->json([
             'outlet' => $outlet,
         ]);
-
-
     }
 
     /**
@@ -33,6 +38,16 @@ class OutletController extends Controller
      */
     public function store(Request $request)
     {
+        // $data = [
+        //     'nama' => $request->input('nama'),
+        //     'alamat' => $request->input('alamat'),
+        // ];
+
+        // Outlet::create($data);
+
+        // return back()->with('message_delete', 'Data Outlet Sudah dihapus');
+
+        //API
         $data = [
             'nama' => $request->input('nama'),
             'alamat' => $request->input('alamat'),
@@ -40,10 +55,9 @@ class OutletController extends Controller
 
         Outlet::create($data);
 
-        return back()->with('message_delete', 'Data Outlet Sudah dihapus');
-
-
-
+        return response()->json([
+            'message_update' => "Data Added!"
+        ]);
     }
 
     /**
@@ -67,15 +81,27 @@ class OutletController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        // $data = [
+        //     'nama' => $request->input('nama'),
+        //     'alamat' => $request->input('alamat'),
+        // ];
+
+        // $datas = Outlet::findOrFail($id);
+        // $datas->update($data);
+
+        // return back()->with('message_delete', 'Data Outlet Sudah di hapus');
+
         $data = [
             'nama' => $request->input('nama'),
             'alamat' => $request->input('alamat'),
         ];
 
-        $data = Outlet::findOrFail($id);
-        $data->update($data);
+        $datas = Outlet::findOrFail($id);
+        $datas->update($data);
 
-        return back()->with('message_delete', 'Data Outlet Sudah di hapus');
+        return response()->json([
+            'message_update' => "Data Updated!"
+        ]);
     }
 
     /**
@@ -83,8 +109,28 @@ class OutletController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = Outlet::findOrFail($id);
-        $data->delete();
-        return back()->with('message_delete', 'Data Outlet Sudah dihapus');
+        // $data = Outlet::findOrFail($id);
+        // $data->delete();
+        // return back()->with('message_delete', 'Data Outlet Sudah dihapus');
+
+        try {
+            // Cari data berdasarkan ID
+            $data = Outlet::findOrFail($id);
+    
+            // Hapus data
+            $data->delete();
+    
+            // Kembalikan respons JSON berhasil
+            return response()->json([
+                'success' => true,
+                'message' => 'Data Outlet berhasil dihapus.'
+            ], 200); // Status 200 untuk permintaan berhasil
+        } catch (\Exception $e) {
+            // Tangani error jika ada
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal menghapus data: ' . $e->getMessage()
+            ], 500); // Status 500 untuk error server
+        }
     }
 }
