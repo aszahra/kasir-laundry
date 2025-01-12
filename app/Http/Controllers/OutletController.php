@@ -16,6 +16,8 @@ class OutletController extends Controller
         return view('page.outlet.index')->with([
             'outlet' => $outlet,
         ]);
+
+
     }
 
     /**
@@ -30,7 +32,7 @@ class OutletController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {        
+    {
         $data = [
             'nama' => $request->input('nama'),
             'alamat' => $request->input('alamat'),
@@ -39,6 +41,9 @@ class OutletController extends Controller
         Outlet::create($data);
 
         return back()->with('message_delete', 'Data Outlet Sudah dihapus');
+
+
+
     }
 
     /**
@@ -67,8 +72,8 @@ class OutletController extends Controller
             'alamat' => $request->input('alamat'),
         ];
 
-        $datas = Outlet::findOrFail($id);
-        $datas->update($data);
+        $data = Outlet::findOrFail($id);
+        $data->update($data);
 
         return back()->with('message_delete', 'Data Outlet Sudah di hapus');
     }
@@ -80,6 +85,6 @@ class OutletController extends Controller
     {
         $data = Outlet::findOrFail($id);
         $data->delete();
-        return back()->with('message_delete','Data Outlet Sudah dihapus');
+        return back()->with('message_delete', 'Data Outlet Sudah dihapus');
     }
 }

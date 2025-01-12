@@ -68,7 +68,7 @@ class PaketController extends Controller
     {
 
         $data = [
-            'id_outlet' => $request->input('id_outlet_edit'),
+            'id_outlet_edit' => $request->input('id_outlet_edit'),
             'jenis' => $request->input('jenis'),
             'nama_paket' => $request->input('nama_paket'),
         ];

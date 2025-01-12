@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('kode_invoice');
             $table->integer('id_paket');
+            $table->integer('jumlah');
             $table->integer('qty');
             $table->text('keterangan');
             $table->timestamps();
