@@ -82,6 +82,9 @@
                                             NAMA PAKET
                                         </th>
                                         <th scope="col" class="px-6 py-3">
+                                            HARGA
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
 
                                         </th>
                                     </tr>
@@ -107,16 +110,20 @@
                                                 {{ $k->nama_paket }}
                                             </td>
                                             <td class="px-6 py-4">
+                                                {{ $k->harga }}
+                                            </td>
+                                            <td class="px-6 py-4">
                                                 <button type="button" data-id="{{ $k->id }}"
-                                                    data-modal-target="sourceModal" data-id_outlet="{{ $k->id_outlet }}"
-                                                    data-jenis="{{ $k->jenis }}"
+                                                    data-modal-target="sourceModal"
+                                                    data-id_outlet="{{ $k->id_outlet }}"
+                                                    data-jenis="{{ $k->jenis }}" 
                                                     data-nama_paket="{{ $k->nama_paket }}"
-                                                    onclick="editSourceModal(this)"
+                                                    data-harga="{{ $k->harga }}" onclick="editSourceModal(this)"
                                                     class="bg-amber-500 hover:bg-amber-600 px-3 py-1 rounded-md text-xs text-white">
                                                     Edit
                                                 </button>
                                                 <button
-                                                    onclick="return paketDelete('{{ $k->id }}','{{ $k->outlet }}')"
+                                                    onclick="return paketDelete('{{ $k->id }}','{{ $k->outlet->nama }}')"
                                                     class="bg-red-500 hover:bg-bg-red-300 px-3 py-1 rounded-md text-xs text-white">Delete</button>
                                             </td>
                                         </tr>
@@ -149,11 +156,11 @@
                 <form method="POST" id="formSourceModal">
                     @csrf
                     <div class="flex flex-col  p-4 space-y-6">
-                        <div class="mb-5">
+                        <div class="">
                             <label for="id_outlet_edit"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Outlet</label>
                             <select class="js-example-placeholder-single js-states form-control w-full"
-                                name="id_outlet_edit" id="id_outlet_edit" data-placeholder="Pilih Outlet">
+                                name="id_outlet_edit" id="id_outlet" data-placeholder="Pilih Outlet">
                                 <option value="" disabled selected>Pilih...</option>
                                 @foreach ($outlet as $k)
                                     <option value="{{ $k->id }}">{{ $k->nama }}</option>
@@ -181,6 +188,12 @@
                             <input name="nama_paket" type="text" id="nama_paket"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
+                        <div class="">
+                            <label for="harga" class="block mb-2 text-sm font-medium text-gray-900">Harga</label>
+                            <input type="text" id="harga" name="harga" required
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Masukan Nama Paket disini...">
+                        </div>
                     </div>
                     <div class="flex items-center p-4 space-x-2 border-t border-gray-200 rounded-b">
                         <button type="submit" id="formSourceButton"
@@ -195,28 +208,29 @@
 
 </x-app-layout>
 <script>
-    const editSourceModal = (button) => {
+        const editSourceModal = (button) => {
         const formModal = document.getElementById('formSourceModal');
         const modalTarget = button.dataset.modalTarget;
         const id = button.dataset.id;
         const id_outlet = button.dataset.id_outlet;
         const jenis = button.dataset.jenis;
         const nama_paket = button.dataset.nama_paket;
+        const harga = button.dataset.harga;
+
         let url = "{{ route('paket.update', ':id') }}".replace(':id', id);
 
         let status = document.getElementById(modalTarget);
-        document.getElementById('title_source').innerText = `UPDATE PAKET`;
+        document.getElementById('title_source').innerText = `UPDATE PAKET ${nama_paket}`;
 
-
-        document.getElementById('id_outlet_edit').value = id_outlet_edit;
-
+        // document.getElementById('id_outlet').value = id_outlet;
         let event = new Event('change');
 
         document.querySelector('[name="id_outlet_edit"]').value = id_outlet;
         document.querySelector('[name="id_outlet_edit"]').dispatchEvent(event);
 
-        document.getElementById('jenis').value = jenis;
         document.getElementById('nama_paket').value = nama_paket;
+        document.getElementById('jenis').value = jenis;
+        document.getElementById('harga').value = harga;
 
         document.getElementById('formSourceButton').innerText = 'Simpan';
         document.getElementById('formSourceModal').setAttribute('action', url);

@@ -38,6 +38,7 @@ class PaketController extends Controller
             'id_outlet' => $request->input('id_outlet'),
             'jenis' => $request->input('jenis'),
             'nama_paket' => $request->input('nama_paket'),
+            'harga' => $request->input('harga'),
         ];
 
         Paket::create($data);
@@ -68,9 +69,10 @@ class PaketController extends Controller
     {
 
         $data = [
-            'id_outlet_edit' => $request->input('id_outlet_edit'),
+            'id_outlet' => $request->input('id_outlet_edit'),
             'jenis' => $request->input('jenis'),
             'nama_paket' => $request->input('nama_paket'),
+            'harga' => $request->input('harga'),
         ];
 
         $datas = Paket::findOrFail($id);
@@ -84,8 +86,33 @@ class PaketController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = Paket::findOrFail($id);
-        $data->delete();
-        return back()->with('message_delete', 'Data Paket Sudah dihapus');
+        // $data = Paket::findOrFail($id);
+        // $data->delete();
+        // return back()->with('message_delete', 'Data Paket Sudah dihapus');
+
+        try {
+            $data = paket::findOrFail($id);
+            $data = paket::where('id', $id)->first();
+
+            $data->delete();
+
+            return response()->json([
+                'message_delete' => "Data Deleted!"
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Failed to delete data.',
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function getPaket($id)
+    {
+        $paket = paket::where('id', $id)->first();
+
+        return $paket
+            ? response()->json(['paket' => $paket])
+            : response()->json(['message' => 'paket tidak ditemukan'], 404);
     }
 }
