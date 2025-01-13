@@ -23,7 +23,7 @@ Route::resource('paket', PaketController::class)->middleware('auth');
 Route::resource('transaksi', TransaksiController::class)->middleware('auth');
 Route::resource('detailTransaksi', DetailTransaksiController::class)->middleware('auth');
 Route::resource('laporan', LaporanController::class)->middleware('auth');
-
+Route::get('/paket/nama_paket/{id}', [PaketController::class, 'getPaket']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

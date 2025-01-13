@@ -32,8 +32,6 @@
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
-                            <div class="flex gap-5">
                                 <div class="mb-5 w-full">
                                     <label for="kode_invoice"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kode
@@ -43,6 +41,8 @@
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="Kode Penjualan" readonly required />
                                 </div>
+                            </div>
+                            <div class="flex gap-5">
                                 <div class="mb-5 w-full">
                                     <label for="id_member"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Member</label>
@@ -55,12 +55,17 @@
                                     </select>
                                 </div>
                                 <div class="mb-5 w-full">
-                                    <label for="tanggal"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal
+                                    <label for="status"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status
                                     </label>
-                                    <input type="date" id="tanggal" name="tanggal" value="{{ date('Y-m-d') }}"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        required />
+                                    <select class="js-example-placeholder-single js-states form-control w-full"
+                                        name="status" id="status" data-placeholder="Pilih Status">
+                                        <option value="" disabled selected>Pilih...</option>
+                                        <option value="BARU">BARU</option>
+                                        <option value="PROSES">PROSES</option>
+                                        <option value="SELESAI">SELESAI</option>
+                                        <option value="DIAMBIL">DIAMBIL</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="flex gap-5">
@@ -74,6 +79,14 @@
                                         required />
                                 </div>
                                 <div class="mb-5 w-full">
+                                    <label for="tanggal"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal
+                                    </label>
+                                    <input type="date" id="tanggal" name="tanggal" value="{{ date('Y-m-d') }}"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        required />
+                                </div>
+                                {{-- <div class="mb-5 w-full">
                                     <label for="tgl_bayar"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal
                                         Bayar
@@ -81,7 +94,7 @@
                                     <input type="date" id="tgl_bayar" name="tgl_bayar" value="{{ date('Y-m-d') }}"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         required />
-                                </div>
+                                </div> --}}
                             </div>
 
                             {{-- DETAIL TRANSAKSI --}}
@@ -127,42 +140,22 @@
                                         required />
                                 </div>
                             </div>
-                            <div class="flex gap-5">
+                            <div class="gap-5 flex">
                                 <div class="mb-5 w-full">
-                                    <label for="status"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status
-                                    </label>
-                                    <select class="js-example-placeholder-single js-states form-control w-full"
-                                        name="status" id="status" data-placeholder="Pilih Status">
-                                        <option value="" disabled selected>Pilih...</option>
-                                        <option value="BARU">BARU</option>
-                                        <option value="PROSES">PROSES</option>
-                                        <option value="SELESAI">SELESAI</option>
-                                        <option value="DIAMBIL">DIAMBIL</option>
-                                    </select>
-                                </div>
-                                <div class="mb-5 w-full">
-                                    <label for="dibayar"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dibayar
-                                    </label>
-                                    <select class="js-example-placeholder-single js-states form-control w-full"
-                                        name="dibayar" id="dibayar" data-placeholder="Pilih Status">
-                                        <option value="" disabled selected>Pilih...</option>
-                                        <option value="D">DIBAYAR</option>
-                                        <option value="B">BELUM DIBAYAR</option>
-                                    </select>
+                                    <label for="total_jual"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total</label>
+                                    <input type="number" id="total_jual" name="total_jual" required
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                                 </div>
                                 <div class="mb-5 w-full">
                                     <label for="total_bayar"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total
-                                        Bayar
-                                    </label>
+                                        Bayar</label>
                                     <input type="number" id="total_bayar" name="total_bayar"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        required />
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                                 </div>
                             </div>
-                            <div class="flex gap-5">
+                            {{-- <div class="flex gap-5">
                                 <div class="mb-5 w-full">
                                     <label for="id_user"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -172,7 +165,7 @@
                                         <option value="{{ $k->id }}">{{ $k->name }}</option>
                                     @endforeach
                                 </div>
-                            </div>
+                            </div> --}}
                             <button type="submit"
                                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
                         </form>
@@ -184,23 +177,23 @@
     </div>
     <script>
         $(document).ready(function() {
-            // // Fungsi menghitung Piutang/Kembali
-            // function calculatePiutangKembali() {
-            //     const totalJual = parseFloat($('#total_jual').val()) || 0;
-            //     const totalBayar = parseFloat($('#total_bayar').val()) || 0;
-            //     const piutangKembali = totalBayar - totalJual;
-            //     $('#piutangKembali').val(piutangKembali);
-            // }
+            function calculateTotalBayar() {
+                const totalHarga = parseFloat($('#total_jual').val()) || 0;
+                const biayaTambahan = parseFloat($('#biaya_tambahan').val()) || 0;
+                const diskon = parseFloat($('#diskon').val()) || 0;
+                const pajak = parseFloat($('#pajak').val()) || 0;
+                const totalBayar = totalHarga - (totalHarga * (diskon/100)) + biayaTambahan + pajak;
+                $('#total_bayar').val(totalBayar);
+            }
 
-            // // Event listener untuk total_bayar
-            // $('#total_bayar').on('input', function() {
-            //     calculatePiutangKembali();
-            // });
+            // Event listener untuk total_bayar
+            $('#biaya_tambahan').on('input', function() {
+                calculateTotalBayar();
+            });
 
-            // // Event listener untuk total_jual (hanya jika diubah secara manual atau oleh kode lain)
-            // $('#total_jual').on('input', function() {
-            //     calculatePiutangKembali();
-            // });
+            $('#diskon').on('input', function() {
+                calculateTotalBayar();
+            });
 
             // MENAMBAH ROW DETAIL PRODUK PENJUALAN
             $('#addRowBtn').click(function(event) {
@@ -215,22 +208,20 @@
                 const newRow = `<div class="border border-2 rounded-xl mb-2 p-2" id="row${rowCount}">
                                 <div class="flex mb-2 gap-2">
                                     <div class="mb-5 w-full">
-                                        <label for="id_paket${rowCount}"
+                                        <label for="paket${rowCount}"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Paket</label>
-                                        <select id="id_paket${rowCount}" name="id_paket[]" class="form-control w-full"
+                                        <select id="paket${rowCount}" name="paket[]" class="form-control w-full"
                                             onchange="getPaket(${rowCount})">
                                             <option value="">Pilih...</option>
                                             @foreach ($paket as $k)
-                                                <option value="{{ $k->id_paket }}">{{ $k->nama_paket }}</option>
+                                                <option value="{{ $k->id }}">{{ $k->nama_paket }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="mb-5 w-full">
                                         <label for="harga${rowCount}"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Harga</label>
-                                        <input type="number" id="harga${rowCount}" name="harga[]"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            required value="0"/>
+                                        <input type="number" id="harga${rowCount}" name="harga[]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly />
                                     </div>
                                     <div class="mb-5 w-full">
                                         <label for="qty${rowCount}"
@@ -240,18 +231,11 @@
                                             required value="0"/>
                                     </div>
                                     <div class="mb-5 w-full">
-                                        <label for="keterangan${rowCount}"
-                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keterangan</label>
-                                        <input type="text" id="keterangan${rowCount}" name="keterangan[]"
+                                        <label for="total_harga${rowCount}"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total Harga</label>
+                                        <input type="number" id="total_harga${rowCount}" name="total_harga[]"
                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            required/>
-                                    </div>
-                                    <div class="mb-5 w-full">
-                                        <label for="jumlah${rowCount}"
-                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jumlah</label>
-                                        <input type="number" id="jumlah${rowCount}" name="jumlah[]"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            required value="0" readonly/>
+                                            required readonly/>
                                     </div>
                                     <button type="button" class="px-2 bg-red-100" onclick="removeRow(${rowCount})">
                                         Hapus
@@ -260,7 +244,7 @@
                             </div>`;
                 $('#produkContainer').append(newRow);
                 $(`#produk${rowCount}`).select2({
-                    placeholder: "Pilih Produk"
+                    placeholder: "Pilih Paket"
                 });
 
                 // tambahin ini
@@ -270,60 +254,30 @@
             function bindRowEvents(rowId) {
                 const hargaInput = document.getElementById(`harga${rowId}`);
                 const qtyInput = document.getElementById(`qty${rowId}`);
-                const jumlahInput = document.getElementById(`jumlah${rowId}`);
+                const totalHargaInput = document.getElementById(`total_harga${rowId}`);
 
                 // Perhitungan total harga
-                const calculateJumlah = () => {
+                const calculateTotalHarga = () => {
                     const harga = parseFloat(hargaInput.value) || 0;
                     const qty = parseInt(qtyInput.value) || 0;
-                    jumlahInput.value = harga * qty;
-                };
+                    totalHargaInput.value = harga * qty;
 
-                // Menambahkan event listener untuk menghitung jumlah saat input berubah
-                hargaInput.addEventListener('input', calculateJumlah);
-                qtyInput.addEventListener('input', calculateJumlah);
+                    //MENGHITUNG TOTAL JUAL
+                    calculateTotalJual();
+                };
+                qtyInput.addEventListener("input", calculateTotalHarga);
             }
 
-            // function calculatePajak(rowCount) {
-            //     const jumlahInput = document.getElementById(`jumlah${rowId}`);
-            //     const pajakInput = document.getElementById('pajak');
-
-            //     const pajak = () => {
-            //         const jumlah = parseInt(jumlahInput.value) || 0;==
-            //         pajakInput.value = jumlah * 0.12;
-
-            //         const jumlah = parseFloat(jumlahInput.value) || 0;
-            //         pajakInput.value = jumlah * 0.12; // Menggunakan 0.12 untuk 12%
-            //         pajakInput.value = jumlah.toFixed(2); // Format ke 2 desimal
-            //     }
-
-            //     // Daftarkan event listener di sini
-            //     jumlahInput.addEventListener('input', pajak);
-            // }
-
-
-            function calculateTotalBayar(rowId) {
-                const jumlahInput = document.getElementById(`jumlah${rowId}`);
-                const biayaTambahanInput = document.getElementById('biaya_tambahan');
-                const diskonInput = document.getElementById('diskon');
-                const pajakInput = document.getElementById('pajak');
-                const totalBayarInput = document.getElementById('total_bayar');
-
-                const calculateTotal = () => {
-                    const jumlah = parseFloat(jumlahInput.value) || 0;
-                    const biayaTambahan = parseFloat(biayaTambahanInput.value) || 0;
-                    const diskon = parseFloat(diskonInput.value) || 0;
-                    const pajak = parseFloat(pajakInput.value) || 0;
-
-                    const totalBayar = jumlah + biayaTambahan - (jumlah * diskon) + (jumlah * pajak);
-                    totalBayarInput.value = totalBayar.toFixed(2); // Format ke 2 desimal
-                };
-
-                // Menambahkan event listener untuk menghitung total bayar saat input berubah
-                jumlahInput.addEventListener('input', calculateTotal);
-                biayaTambahanInput.addEventListener('input', calculateTotal);
-                diskonInput.addEventListener('input', calculateTotal);
-                pajakInput.addEventListener('input', calculateTotal);
+            //PERHITUNGAN TOTAL JUAL
+            function calculateTotalJual() {
+                let totalJual = 0;
+                let pajak = 0;
+                $("[id^='total_harga']").each(function() {
+                    totalJual += parseFloat($(this).val()) || 0;
+                    pajak = totalJual * (12 / 100);
+                });
+                $('#total_jual').val(totalJual);
+                $('#pajak').val(pajak);
             }
         });
 
@@ -333,4 +287,26 @@
             updateRowNumbers();
         }
     </script>
+
+<script>
+    const getPaket = (rowCount) => {
+        const paketId = document.getElementById(`paket${rowCount}`).value;
+
+        if (!paketId) {
+            document.getElementById(`harga${rowCount}`).value = "";
+            return;
+        }
+
+        axios.get(`/paket/nama_paket/${paketId}`)
+            .then(response => {
+                const paket = response.data.paket;
+
+                document.getElementById(`harga${rowCount}`).value = paket ? paket.harga : "";
+            })
+            .catch(error => {
+                console.error("Gagal memuat data paket:", error);
+                document.getElementById(`harga${rowCount}`).value = "";
+            });
+    };
+</script>
 </x-app-layout>

@@ -74,56 +74,56 @@
                                     @php
                                         $no = 1;
                                     @endphp
-                                    @foreach ($data as $f)
+                                    @foreach ($data as $k)
                                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                             <th scope="row"
                                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white bg-gray-100">
                                                 {{ $no++ }}
                                             </th>
                                             <td class="px-6 py-4 bg-gray-100">
-                                                {{ $f->outlet->nama }}
+                                                {{ $k->outlet->nama }}
                                             </td>
                                             <td class="px-6 py-4">
-                                                {{ $f->kode_invoice }}
+                                                {{ $k->kode_invoice }}
                                             </td>
                                             <td class="px-6 py-4 bg-gray-100">
-                                                {{ $f->member->nama }}
+                                                {{ $k->member->nama }}
                                             </td>
                                             <td class="px-6 py-4 bg-gray-100">
-                                                {{ $f->tanggal }}
+                                                {{ $k->tanggal }}
                                             </td>
                                             <td class="px-6 py-4 bg-gray-100">
-                                                {{ $f->batas_waktu }}
+                                                {{ $k->batas_waktu }}
                                             </td>
                                             <td class="px-6 py-4 bg-gray-100">
-                                                {{ $f->tgl_bayar }}
+                                                {{ $k->tgl_bayar }}
                                             </td>
                                             <td class="px-6 py-4 bg-gray-100">
-                                                {{ $f->biaya_tambahan }}
+                                                {{ $k->biaya_tambahan }}
                                             </td>
                                             <td class="px-6 py-4 bg-gray-100">
-                                                {{ $f->diskon }}
+                                                {{ $k->diskon }}
                                             </td>
                                             <td class="px-6 py-4 bg-gray-100">
-                                                {{ $f->pajak }}
+                                                {{ $k->pajak }}
                                             </td>
                                             <td class="px-6 py-4 bg-gray-100">
-                                                {{ $f->status }}
+                                                {{ $k->status }}
                                             </td>
                                             <td class="px-6 py-4 bg-gray-100">
-                                                {{ $f->dibayar }}
+                                                {{ $k->dibayar }}
                                             </td>
                                             <td class="px-6 py-4 bg-gray-100">
-                                                {{ $f->id_user->name }}
+                                                {{ $k->id_user->name }}
                                             </td>
                                             <td class="px-6 py-4 bg-gray-100">
-                                                {{ $f->total_bayar }}
+                                                {{ $k->total_bayar }}
                                             </td>
                                             @can('role-A')
                                                 <td class="px-6 py-4 bg-gray-100">
                                                     <button
                                                         class="bg-red-400 p-3 w-10 h-10 rounded-xl text-white hover:bg-red-500"
-                                                        onclick="return dataDelete('{{ $f->id }}','{{ $f->outlet->nama }}','{{ $f->member->nama }}')">
+                                                        onclick="return dataDelete('{{ $k->id }}','{{ $k->outlet->nama }}','{{ $k->member->nama }}')">
                                                         <i class="fi fi-sr-delete-document"></i>
                                                     </button>
                                                     <button>
