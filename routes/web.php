@@ -13,8 +13,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route::middleware('auth')->group(function(){
+//     Route::apiResource('outlet', OutletController::class);
+// });
+
 Route::middleware('auth')->group(function(){
-    Route::apiResource('outlet', OutletController::class);
+    Route::resource('outlet', OutletController::class);
 });
 
 // Route::resource('outlet', OutletController::class)->middleware('auth');

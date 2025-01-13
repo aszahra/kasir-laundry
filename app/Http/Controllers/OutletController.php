@@ -55,7 +55,6 @@ class OutletController extends Controller
 
         Outlet::create($validatedData);
 
-
         return response()->json([
             'message_update' => "Data Added!"
         ]);
