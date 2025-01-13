@@ -113,23 +113,32 @@
                                             <td class="px-6 py-4 bg-gray-100">
                                                 {{ $k->dibayar }}
                                             </td>
-                                            <td class="px-6 py-4 bg-gray-100">
+                                            {{-- <td class="px-6 py-4 bg-gray-100">
                                                 {{ $k->id_user->name }}
-                                            </td>
-                                            <td class="px-6 py-4 bg-gray-100">
+                                            </td> --}}
+                                            {{-- <td class="px-6 py-4 bg-gray-100">
                                                 {{ $k->total_bayar }}
-                                            </td>
+                                            </td> --}}
                                             @can('role-A')
                                                 <td class="px-6 py-4 bg-gray-100">
+                                                    <button type="button" data-id="{{ $k->id }}"
+                                                        data-modal-target="sourceModal" data-tgl_bayar="{{ $k->tgl_bayar }}"
+                                                        data-dibayar="{{ $k->dibayar }}" onclick="editSourceModal(this)"
+                                                        class="bg-amber-500 hover:bg-amber-600 px-3 py-1 rounded-md text-xs text-white">
+                                                        Edit
+                                                    </button>
                                                     <button
+                                                        onclick="return transaksiDelete('{{ $k->id }}','{{ $k->outlet->nama }}')"
+                                                        class="bg-red-500 hover:bg-bg-red-300 px-3 py-1 rounded-md text-xs text-white">Delete</button>
+                                                    {{-- <button
                                                         class="bg-red-400 p-3 w-10 h-10 rounded-xl text-white hover:bg-red-500"
                                                         onclick="return dataDelete('{{ $k->id }}','{{ $k->outlet->nama }}','{{ $k->member->nama }}')">
                                                         <i class="fi fi-sr-delete-document"></i>
                                                     </button>
                                                     <button>
-                                                        onclick="return transaksiDelete('{{ $t->id }}','{{ $t->outlet->nama }}')"
+                                                        onclick="return transaksiDelete('{{ $k->id }}','{{ $k->outlet->nama }}')"
                                                         <i class="bi bi-pencil-fill"></i>
-                                                    </button>
+                                                    </button> --}}
                                                 </td>
                                             @endcan
                                         </tr>
