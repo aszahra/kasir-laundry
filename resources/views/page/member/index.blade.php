@@ -5,11 +5,10 @@
         </h2>
     </x-slot>
 
-    {{-- @if (session('message_create'))
-        <div id="custom-alert" class="custom-alert">
-            {{ session('message_create') }}
-            <button onclick="closeAlert()">OK</button>
-        </div>
+    @if (session('message_create'))
+        <script>
+            alert("{{ session('message_create') }}");
+        </script>
     @endif
 
     @if (session('message_update'))
@@ -22,7 +21,7 @@
         <script>
             alert("{{ session('message_delete') }}");
         </script>
-    @endif --}}
+    @endif
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
