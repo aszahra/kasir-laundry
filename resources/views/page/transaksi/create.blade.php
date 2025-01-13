@@ -289,7 +289,7 @@
             //     const pajakInput = document.getElementById('pajak');
 
             //     const pajak = () => {
-            //         const jumlah = parseInt(jumlahInput.value) || 0;
+            //         const jumlah = parseInt(jumlahInput.value) || 0;==
             //         pajakInput.value = jumlah * 0.12;
 
             //         const jumlah = parseFloat(jumlahInput.value) || 0;
@@ -333,50 +333,4 @@
             updateRowNumbers();
         }
     </script>
-
-    {{-- <script>
-        function updateStatusPembelian() {
-            const konsumenSelect = document.getElementById('id_konsumen');
-            const totalBayarInput = document.getElementById('total_bayar');
-            const totalJualInput = document.getElementById('total_jual');
-            const piutangKembali = document.getElementById('piutangKembali');
-
-            //Pastikan elemen ada
-            if (!konsumenSelect || !totalBayarInput || !totalJualInput || !piutangKembali) {
-                console.error("Element tidak ditemukan!");
-                return;
-            }
-
-            const selectedOption = konsumenSelect.options[konsumenSelect.selectedIndex];
-            const statusKonsumen = selectedOption ? selectedOption.getAttribute('data-status') : null;
-
-            if (statusKonsumen === 'MAHASISWA') {
-                //Jika status konsumen adalah mahasiswa
-                totalBayarInput.value = totalJualInput.value || 0; //isi dengan nilai total jual
-                totalBayarInput.readonly = true; //nonaktifkan input
-                piutangKembali.value = 0;
-                piutangKembali.readonly = true;
-            } else {
-                //Jika status konsumen bukan mahasiswa
-                totalBayarInput.value = ''; //kosongkan nilai
-                totalBayarInput.readonly = false; //aktifkan kembali input
-                piutangKembali.readonly = true;
-            }
-
-            // var selectElement = document.getElementById("id_konsumen");
-            // var selectedOption = selectElement.options[selectElement.selectedIndex];
-            // var dataStatus = selectedOption.getAttribute("data-status");
-
-            // //Menyembunyikan semua form status pembelian
-            // document.getElementById("status-pembelian-container").style.display = "none";
-            // document.getElementById("status-pembelian-text-container").style.display = "none";
-
-            // //Tampilkan form sesuai status konsumen
-            // if (dataStatus === "KARYAWAN") {
-            //     document.getElementById("status-pembelian-container").style.display = "block";
-            // } else if (dataStatus === "MAHASISWA") {
-            //     document.getElementById("status-pembelian-text-container").style.display = "block";
-            // }
-        }
-    </script> --}}
 </x-app-layout>

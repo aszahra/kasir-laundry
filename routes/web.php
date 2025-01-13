@@ -13,7 +13,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('outlet', OutletController::class)->middleware('auth');
+Route::middleware('auth')->group(function(){
+    Route::resource('outlet', OutletController::class);
+});
+
+// Route::resource('outlet', OutletController::class)->middleware('auth');
 Route::resource('member', MemberController::class)->middleware('auth');
 Route::resource('paket', PaketController::class)->middleware('auth');
 Route::resource('transaksi', TransaksiController::class)->middleware('auth');
