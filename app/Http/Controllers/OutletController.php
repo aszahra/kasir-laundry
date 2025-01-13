@@ -48,12 +48,13 @@ class OutletController extends Controller
         // return back()->with('message_delete', 'Data Outlet Sudah dihapus');
 
         //API
-        $data = [
-            'nama' => $request->input('nama'),
-            'alamat' => $request->input('alamat'),
-        ];
+        $validatedData = $request->validate([
+            'nama' => 'required|string|max:255',
+            'alamat' => 'required|string|max:255',
+        ]);
 
-        Outlet::create($data);
+        Outlet::create($validatedData);
+
 
         return response()->json([
             'message_update' => "Data Added!"

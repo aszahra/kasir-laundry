@@ -14,7 +14,7 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->group(function(){
-    Route::resource('outlet', OutletController::class);
+    Route::apiResource('outlet', OutletController::class);
 });
 
 // Route::resource('outlet', OutletController::class)->middleware('auth');

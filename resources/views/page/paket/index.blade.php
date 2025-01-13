@@ -23,7 +23,7 @@
                                 <label for="id_outlet"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Outlet</label>
                                 <select class="js-example-placeholder-single js-states form-control w-full"
-                                    name="id_outlet" id="id_outlet" data-placeholder="Pilih Outlet">
+                                    name="id_outlet" id="id_outlet" placeholder="Pilih Outlet">
                                     <option value="" disabled selected>Pilih...</option>
                                     @foreach ($outlet as $k)
                                         <option value="{{ $k->id }}">{{ $k->nama }}</option>
@@ -31,25 +31,32 @@
                                 </select>
                             </div>
                             <div class="mb-5">
-                                <label for="jenis"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis
-                                </label>
-                                <select class="js-example-placeholder-single js-states form-control w-full"
+                                <label for="base-input"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis</label>
+                                <select class="js-example-placeholder-single js-states form-control w-full m-6"
                                     name="jenis" data-placeholder="Pilih Jenis">
-                                    <option value="" disabled selected>Pilih...</option>
-                                    <option value="BAJU">BAJU</option>
-                                    <option value="HOODIE">HOODIE</option>
-                                    <option value="SPREI">SPREI</option>
-                                    <option value="KARPET">KARPET</option>
-                                    <option value="SELIMUT">SELIMUT</option>
+                                    <option value="">Pilih...</option>
+                                    <option value="Baju">Baju</option>
+                                    <option value="Hoodie">Hoodie</option>
+                                    <option value="Sprei">Sprei</option>
+                                    <option value="Karpet">Karpet</option>
+                                    <option value="Selimut">Selimut</option>
                                 </select>
-                            </div>
+                            </div> 
                             <div class="mb-5">
-                                <label for="nama_paket"
+                                <label for="base-input"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
                                     Paket</label>
-                                    <input name="nama_paket" type="text" id="nama_paket"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukan nama paket...">
+                                <input name="nama_paket" type="text" id="base-input"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="Masukan nama paket...">
+                            </div>
+                            <div class="mb-5">
+                                <label for="base-input"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Harga</label>
+                                <input name="harga" type="number" id="base-input"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="Masukan Harga disini..." required>
                             </div>
                             <button type="submit"
                                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">SIMPAN</button>
@@ -91,8 +98,8 @@
                                                 {{ $paket->perPage() * ($paket->currentPage() - 1) + $key + 1 }}
                                             </th>
                                             <td class="px-6 py-4">
-                                                {{ $k->outlet->nama}}
-                                            </td>                                            
+                                                {{ $k->outlet->nama }}
+                                            </td>
                                             <td class="px-6 py-4">
                                                 {{ $k->jenis }}
                                             </td>
@@ -109,7 +116,7 @@
                                                     Edit
                                                 </button>
                                                 <button
-                                                    onclick="return paketDelete('{{ $k->id }}','{{ $k->paket }}')"
+                                                    onclick="return paketDelete('{{ $k->id }}','{{ $k->outlet }}')"
                                                     class="bg-red-500 hover:bg-bg-red-300 px-3 py-1 rounded-md text-xs text-white">Delete</button>
                                             </td>
                                         </tr>
@@ -171,7 +178,7 @@
                             <label for="nama_paket"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
                                 Paket</label>
-                                <input name="nama_paket" type="text" id="nama_paket"
+                            <input name="nama_paket" type="text" id="nama_paket"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
                     </div>

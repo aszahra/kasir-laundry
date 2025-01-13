@@ -13,7 +13,7 @@ class Outlet extends Model
         'nama',
         'alamat'
     ];
-    
+
     protected $table = 'outlet';
 
     public function paket()
