@@ -74,6 +74,34 @@
             border-radius: 0px 10px 0px 10px;
         }
     </style>
+
+    {{-- sweet alert --}}
+    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        .custom-alert {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #4caf50;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .custom-alert button {
+            background-color: white;
+            color: #4caf50;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style> --}}
 </head>
 
 <body class="font-sans antialiased">
@@ -105,6 +133,13 @@
         });
     </script>
     @stack('scripts')
+
+    {{-- sweet alert --}}
+    {{-- <script>
+        function closeAlert() {
+            document.getElementById('custom-alert').style.display = 'none';
+        }
+    </script> --}}
 </body>
 
 </html>

@@ -5,6 +5,25 @@
         </h2>
     </x-slot>
 
+    {{-- @if (session('message_create'))
+        <div id="custom-alert" class="custom-alert">
+            {{ session('message_create') }}
+            <button onclick="closeAlert()">OK</button>
+        </div>
+    @endif
+
+    @if (session('message_update'))
+        <script>
+            alert("{{ session('message_update') }}");
+        </script>
+    @endif
+
+    @if (session('message_delete'))
+        <script>
+            alert("{{ session('message_delete') }}");
+        </script>
+    @endif --}}
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -23,17 +42,20 @@
                                 <label for="base-input"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
                                 <input name="nama" type="text" id="base-input"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukan nama...">
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="Masukan nama...">
                             </div>
                             <div class="mb-5">
                                 <label for="base-input"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat</label>
                                 <input name="alamat" type="text" id="base-input"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukan alamat...">
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="Masukan alamat...">
                             </div>
                             <div class="mb-5">
                                 <label for="jenis_kelamin"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis Kelamin</label>
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis
+                                    Kelamin</label>
                                 <select class="js-example-placeholder-single js-states form-control w-full"
                                     name="jenis_kelamin" data-placeholder="Pilih Jenis Kelamin">
                                     <option value="" disabled selected>Pilih...</option>
@@ -92,7 +114,9 @@
                                             <td class="px-6 py-4">
                                                 <button type="button" data-id="{{ $k->id }}"
                                                     data-modal-target="sourceModal" data-nama="{{ $k->nama }}"
-                                                    data-alamat="{{ $k->alamat }}" data-jenis_kelamin="{{ $k->jenis_kelamin }}" onclick="editSourceModal(this)"
+                                                    data-alamat="{{ $k->alamat }}"
+                                                    data-jenis_kelamin="{{ $k->jenis_kelamin }}"
+                                                    onclick="editSourceModal(this)"
                                                     class="bg-amber-500 hover:bg-amber-600 px-3 py-1 rounded-md text-xs text-white">
                                                     Edit
                                                 </button>
@@ -144,7 +168,8 @@
                         </div>
                         <div class="mb-5">
                             <label for="jenis_kelamin"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis Kelamin</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis
+                                Kelamin</label>
                             <select class="js-example-placeholder-single js-states form-control w-full"
                                 name="jenis_kelamin" id="jenis_kelamin" data-placeholder="Pilih Jenis Kelamin">
                                 <option value="" disabled selected>Pilih...</option>
@@ -203,13 +228,36 @@
         status.classList.toggle('hidden');
     }
 
+    // const memberDelete = async (id, nama) => {
+    //     let tanya = confirm(`Apakah anda yakin untuk menghapus Member ${nama} ?`);
+    //     if (tanya) {
+    //         try {
+    //             const response = await axios.post(`/member/${id}`, {
+    //                 '_method': 'DELETE',
+    //                 '_token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    //             });
+
+    //             if (response.status === 200) {
+    //                 alert('Member berhasil dihapus');
+    //                 location.reload();
+    //             } else {
+    //                 alert('Gagal menghapus member. Silakan coba lagi.');
+    //             }
+    //         } catch (error) {
+    //             console.error(error);
+    //             alert('Terjadi kesalahan saat menghapus member. Silakan cek konsol untuk detail.');
+    //         }
+    //     }
+    // };
+
     const memberDelete = async (id, nama) => {
         let tanya = confirm(`Apakah anda yakin untuk menghapus Member ${nama} ?`);
         if (tanya) {
             try {
                 const response = await axios.post(`/member/${id}`, {
                     '_method': 'DELETE',
-                    '_token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    '_token': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                        'content')
                 });
 
                 if (response.status === 200) {

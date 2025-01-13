@@ -55,6 +55,7 @@ class TransaksiController extends Controller
         // ]);
 
         $kode_invoice = $request->input('kode_invoice');
+        $paket = $request->input('paket', []);
         // $paket = $request->input('id_paket', []);
         // $qty = $request->input('qty', []);
         // $keterangan = $request->input('keterangan', []);

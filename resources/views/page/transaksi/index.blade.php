@@ -69,6 +69,9 @@
                                         <th scope="col" class="px-6 py-3">
                                             TOTAL BAYAR
                                         </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            ACTION
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -120,16 +123,16 @@
                                             <td class="px-6 py-4 bg-gray-100">
                                                 {{ $f->total_bayar }}
                                             </td>
-
-                                            {{-- @can('role-A')
+                                            @can('role-A')
                                                 <td class="px-6 py-4 bg-gray-100">
                                                     <button
                                                         class="bg-red-400 p-3 w-10 h-10 rounded-xl text-white hover:bg-red-500"
                                                         onclick="return dataDelete('{{ $f->id }}','{{ $f->outlet->nama }}','{{ $f->member->nama }}')">
                                                         <i class="fi fi-sr-delete-document"></i>
+                                                        <i class="bi bi-pencil-fill"></i>
                                                     </button>
                                                 </td>
-                                            @endcan --}}
+                                            @endcan
                                         </tr>
                                     @endforeach
                                 </tbody>

@@ -31,16 +31,27 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        $data = [
-            'nama' => $request->input('nama'),
-            'alamat' => $request->input('alamat'),
-            'jenis_kelamin' => $request->input('jenis_kelamin'),
-        ];
+        $data = $request->validate([
+            'nama' => 'required|string|max:255',
+            'alamat' => 'required|string|max:255',
+            'jenis_kelamin' => 'required|string',
+        ]);
 
         Member::create($data);
 
-        return back()->with('message_delete', 'Data Member Sudah dihapus');
+        return back()->with('message_create', 'Data Member berhasil ditambahkan!');
     }
+    // {
+    //     $data = [
+    //         'nama' => $request->input('nama'),
+    //         'alamat' => $request->input('alamat'),
+    //         'jenis_kelamin' => $request->input('jenis_kelamin'),
+    //     ];
+
+    //     Member::create($data);
+
+    //     return back()->with('message_delete', 'Data Member Sudah dihapus');
+    // }
 
     /**
      * Display the specified resource.
@@ -63,25 +74,43 @@ class MemberController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $data = [
-            'nama' => $request->input('nama'),
-            'alamat' => $request->input('alamat'),
-            'jenis_kelamin' => $request->input('jenis_kelamin'),
-        ];
+        $data = $request->validate([
+            'nama' => 'required|string|max:255',
+            'alamat' => 'required|string|max:255',
+            'jenis_kelamin' => 'required|string',
+        ]);
 
-        $datas = Member::findOrFail($id);
-        $datas->update($data);
+        $member = Member::findOrFail($id);
+        $member->update($data);
 
-        return back()->with('message_delete', 'Data Member Sudah di hapus');
+        return back()->with('message_update', 'Data Member berhasil diperbarui!');
     }
+    // {
+    //     $data = [
+    //         'nama' => $request->input('nama'),
+    //         'alamat' => $request->input('alamat'),
+    //         'jenis_kelamin' => $request->input('jenis_kelamin'),
+    //     ];
+
+    //     $datas = Member::findOrFail($id);
+    //     $datas->update($data);
+
+    //     return back()->with('message_delete', 'Data Member Sudah di hapus');
+    // }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        $data = Member::findOrFail($id);
-        $data->delete();
-        return back()->with('message_delete','Data Member Sudah dihapus');
+        $member = Member::findOrFail($id);
+        $member->delete();
+
+        return back()->with('message_delete', 'Data Member berhasil dihapus!');
     }
+    // {
+    //     $data = Member::findOrFail($id);
+    //     $data->delete();
+    //     return back()->with('message_delete','Data Member Sudah dihapus');
+    // }
 }
