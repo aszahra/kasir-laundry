@@ -34,11 +34,26 @@ class LaporanController extends Controller
         $dari = ($dari === 'all') ? null : $dari;
         $sampai = ($sampai === 'all') ? null : $sampai;
 
-        $data = Transaksi::whereBetween('tanggal', [$dari, $sampai])
-            ->get();
+        if($dari === null){
+            $data = Transaksi::all();
+        }else{
+            $data = Transaksi::whereBetween('tanggal', [$dari, $sampai])->get();
+        }
+        
         return view('page.laporan.print')->with([
-            'data' => $data
-        ]);
+            'data' => $data]);
+
+
+        // $dari = request('dari', 'all');
+        // $sampai = request('sampai', 'all');
+
+        // $dari = ($dari === 'all') ? null : $dari;
+        // $sampai = ($sampai === 'all') ? null : $sampai;
+
+        // $data = Transaksi::whereBetween('tanggal', [$dari, $sampai])->get();
+        // return view('page.laporan.print')->with([
+        //     'data' => $data
+        // ]);
     }
 
     /**

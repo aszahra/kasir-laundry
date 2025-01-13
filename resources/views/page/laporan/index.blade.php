@@ -7,39 +7,40 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="gap-5 items-start flex">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg w-full p-4">
-                    <div class="p-4 bg-gray-100 mb-6 rounded-xl font-bold">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <div class="p-4 bg-gray-100 mb-2 rounded-xl font-bold">
                         <div class="flex items-center justify-between">
                             <div class="w-full">
                                 FORM INPUT LAPORAN TRANSAKSI
                             </div>
                         </div>
                     </div>
-                    {{-- FORM INPUT PENJUALAN --}}
                     <div>
-                        <form class="w-full mx-auto" method="POST" action="{{ route('laporan.store') }}">
+                        <form class="w-full mx-auto my-5" method="POST" action="{{ route('laporan.store') }}">
                             @csrf
-                            <div class="flex gap-5">
+                            <div class="flex gap-5 my-5">
                                 <div class="mb-5 w-full">
-                                    <label for=""
+                                    <label for="dari"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dari</label>
                                     <input type="date" id="dari" name="dari"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        />
                                 </div>
                                 <div class="mb-5 w-full">
-                                    <label for=""
+                                    <label for="sampai"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sampai</label>
                                     <input type="date" id="sampai" name="sampai"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        />
                                 </div>
                             </div>
-                            <button type="submit" class="bg-green-400 m-2 w-40 h-10 rounded-xl">Print</button>
-                            <button type="reset" class="bg-red-500 m-2 w-40 h-10 rounded-xl">Batal</button>
+                            <div class="flex gap-3">
+                                <button type="submit" class=" bg-emerald-200 hover:bg-emerald-400 focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm w-full sm:w-auto px-12 py-2.5 text-center dark:bg-emerald-200 dark:hover:bg-emerald-300 dark:focus:ring-emerald-300">Print</button>
+                                <button type="reset" class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-12 py-2.5 text-center dark:bg-red-00 dark:hover:bg-red-500 dark:focus:ring-red-500">Batal</button>
+                            </div>
                         </form>
                     </div>
-                    {{-- =================== --}}
                 </div>
             </div>
         </div>
